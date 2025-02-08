@@ -10,7 +10,5 @@ public class AccountProfile : Profile
     {
         CreateMap<RegisterVM, User>();
         CreateMap<LoginVM, User>();
-        CreateMap<UserGetVM, User>()
-            .ReverseMap();
     }
 }

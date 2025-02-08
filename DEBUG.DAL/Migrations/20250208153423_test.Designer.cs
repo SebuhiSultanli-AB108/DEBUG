@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEBUG.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250205171710_userimage")]
-    partial class userimage
+    [Migration("20250208153423_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,6 +213,10 @@ namespace DEBUG.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ProfileImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

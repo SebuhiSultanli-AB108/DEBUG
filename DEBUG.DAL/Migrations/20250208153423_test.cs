@@ -5,13 +5,13 @@
 namespace DEBUG.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class userimage : Migration
+    public partial class test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "ProfileImage",
+                name: "Role",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -22,7 +22,7 @@ namespace DEBUG.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ProfileImage",
+                name: "Role",
                 table: "AspNetUsers");
         }
     }

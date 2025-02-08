@@ -1,3 +1,9 @@
+C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.csproj.AssemblyReference.cache
+C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.AssemblyInfoInputs.cache
+C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.AssemblyInfo.cs
+C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.csproj.CoreCompileInputs.cache
+C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.sourcelink.json
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.BL.deps.json
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.BL.dll
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.BL.pdb
@@ -5,14 +11,8 @@ C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.Core.dll
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.DAL.dll
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.DAL.pdb
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\bin\Debug\net8.0\DEBUG.Core.pdb
-C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.csproj.AssemblyReference.cache
-C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.AssemblyInfoInputs.cache
-C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.AssemblyInfo.cs
-C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.csproj.CoreCompileInputs.cache
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.csproj.Up2Date
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.dll
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\refint\DEBUG.BL.dll
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.pdb
 C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\ref\DEBUG.BL.dll
-C:\Users\Phoenix\Desktop\DEBUG\DEBUG.BL\obj\Debug\net8.0\DEBUG.BL.sourcelink.json

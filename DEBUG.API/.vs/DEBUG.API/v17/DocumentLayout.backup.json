@@ -1,7 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Phoenix\\Desktop\\test\\DEBUG\\DEBUG.API\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\wwwroot\\swagger-ui\\swaggerdark.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:wwwroot\\swagger-ui\\swaggerdark.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\serviceregistrationapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:serviceregistrationapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\externalservices\\jwttokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\userservices\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\helpers\\hashhelper.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +35,106 @@
       "DocumentGroups": [
         {
           "DockedWidth": 313,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SwaggerDark.css",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\wwwroot\\swagger-ui\\SwaggerDark.css",
+              "RelativeDocumentMoniker": "wwwroot\\swagger-ui\\SwaggerDark.css",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\wwwroot\\swagger-ui\\SwaggerDark.css",
+              "RelativeToolTip": "wwwroot\\swagger-ui\\SwaggerDark.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-08T16:42:14.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiceRegistrationAPI.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\ServiceRegistrationAPI.cs",
+              "RelativeDocumentMoniker": "ServiceRegistrationAPI.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\ServiceRegistrationAPI.cs",
+              "RelativeToolTip": "ServiceRegistrationAPI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T16:16:59.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T16:16:36.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JWTTokenHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\ExternalServices\\JWTTokenHandler.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\ExternalServices\\JWTTokenHandler.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\ExternalServices\\JWTTokenHandler.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\ExternalServices\\JWTTokenHandler.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAIBJwBAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T16:07:31.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HashHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Helpers\\HashHelper.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Helpers\\HashHelper.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Helpers\\HashHelper.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Helpers\\HashHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T15:51:56.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADwvx8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T15:48:40.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T14:03:09.003Z",
+              "EditorCaption": ""
             }
           ]
         }

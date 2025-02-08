@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEBUG.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250203185602_init")]
+    [Migration("20250207141747_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -211,6 +211,10 @@ namespace DEBUG.DAL.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfileImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

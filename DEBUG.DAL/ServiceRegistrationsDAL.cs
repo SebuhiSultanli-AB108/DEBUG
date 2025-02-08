@@ -30,29 +30,6 @@ public static class ServiceRegistrationsDAL
         return services;
     }
 
-    public static IServiceCollection AddIdentitySettings(this IServiceCollection services)
-    {
-        services.AddIdentity<User, IdentityRole>(opt =>
-        {
-            opt.User.RequireUniqueEmail = true;
-            opt.SignIn.RequireConfirmedEmail = false;//
-
-            opt.Password.RequiredUniqueChars = 3;
-            opt.Password.RequiredLength = 8;
-            opt.Password.RequireNonAlphanumeric = true;
-            opt.Password.RequireUppercase = true;
-            opt.Password.RequireLowercase = true;
-
-            opt.Lockout.AllowedForNewUsers = true;
-            opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            opt.Lockout.MaxFailedAccessAttempts = 3;
-
-        })
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders(); ;
-        return services;
-    }
-
 
     public static IApplicationBuilder AddSeedData(this IApplicationBuilder app)
     {
@@ -88,7 +65,9 @@ public static class ServiceRegistrationsDAL
             {
                 UserName = "admin",
                 FullName = "admin",
+                Role = nameof(Roles.Admin),
                 Email = "admin@gmail.com",
+                ProfileImage = ""
             };
             user.EmailConfirmed = true;
             await _userManager.CreateAsync(user, "Phoenix_0556");
