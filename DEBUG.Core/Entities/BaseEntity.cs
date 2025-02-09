@@ -1,4 +1,4 @@
-﻿namespace DEBUG.Core.Models;
+﻿namespace DEBUG.Core.Entities;
 
 public abstract class BaseEntity
 {

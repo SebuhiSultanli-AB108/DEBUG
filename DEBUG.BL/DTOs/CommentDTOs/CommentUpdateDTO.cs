@@ -1,6 +1,6 @@
-﻿namespace DEBUG.BL.ViewModels.CommentVMs;
+﻿namespace DEBUG.BL.DTOs.CommentDTOs;
 
-public class CommentCreateVM
+public class CommentUpdateDTO
 {
     public string CommentText { get; set; }
     public int AnswerId { get; set; }

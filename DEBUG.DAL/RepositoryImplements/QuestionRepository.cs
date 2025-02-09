@@ -1,4 +1,4 @@
-﻿using DEBUG.Core.Models;
+﻿using DEBUG.Core.Entities;
 using DEBUG.Core.RepositoryInstances;
 using DEBUG.DAL.Context;
 

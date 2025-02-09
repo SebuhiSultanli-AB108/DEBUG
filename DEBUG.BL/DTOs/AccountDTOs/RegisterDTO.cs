@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DEBUG.BL.ViewModels.AccountVMs;
+namespace DEBUG.BL.DTOs.AccountDTOs;
 
-public class RegisterVM
+public class RegisterDTO
 {
     [MaxLength(64), Required]
     public string FullName { get; set; }

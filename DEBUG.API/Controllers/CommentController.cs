@@ -1,0 +1,49 @@
+﻿using DEBUG.BL.DTOs.CommentDTOs;
+using DEBUG.BL.Exceptions.Common.Common;
+using DEBUG.BL.Services.AnswerServices;
+using DEBUG.BL.Services.CommentServices;
+using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+namespace DEBUG.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class CommentController(IAnswerService _answerService, ICommentService _commentService, UserManager<User> _userManager) : ControllerBase
+{
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetAllByAnswerId(int answerId)
+    {
+        if (await _answerService.GetByIdAsync(answerId) == null) throw new NotFoundException<Answer>();
+        return Ok(_commentService.GetAllByAnswerId(answerId));
+    }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        return Ok(await _commentService.GetByIdAsync(id));
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Create(CommentCreateDTO dto, int answerId)
+    {
+        var res = await _commentService.CreateAsync(answerId, dto, await _userManager.GetUserAsync(User));
+        return Ok(res);
+    }
+    [HttpPut("[action]")]
+    public async Task<IActionResult> Update(int id, CommentUpdateDTO dto)
+    {
+        return Ok(await _commentService.UpdateAsync(id, dto));
+    }
+    [HttpPut("[action]")]
+    public async Task<IActionResult> SoftDeleteOrRestore(int id)
+    {
+        await _commentService.SoftDeleteOrRestoreAsync(id);
+        return Ok();
+    }
+    [HttpDelete("[action]")]
+    public async Task<IActionResult> HardDelete(int id)
+    {
+        await _commentService.HardDeleteAsync(id);
+        return Ok();
+    }
+}

@@ -1,6 +1,6 @@
-﻿namespace DEBUG.BL.ViewModels.QuestionVMs;
+﻿namespace DEBUG.BL.DTOs.QuestionDTOs;
 
-public class QuestionCreateVM
+public class QuestionUpdateDTO
 {
     public string Title { get; set; }
     public string Content { get; set; }

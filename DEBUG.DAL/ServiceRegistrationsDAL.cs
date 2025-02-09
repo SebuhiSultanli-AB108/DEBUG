@@ -1,5 +1,5 @@
-﻿using DEBUG.Core.Enums;
-using DEBUG.Core.Models;
+﻿using DEBUG.Core.Entities;
+using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
 using DEBUG.DAL.Context;
 using DEBUG.DAL.RepositoryImplements;

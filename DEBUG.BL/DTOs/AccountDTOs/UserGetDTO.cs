@@ -1,6 +1,6 @@
-﻿namespace DEBUG.BL.ViewModels.AccountVMs;
+﻿namespace DEBUG.BL.DTOs.AccountDTOs;
 
-public class UserGetVM
+public class UserGetDTO
 {
     public string Id { get; set; }
     public string ProfileImage { get; set; }

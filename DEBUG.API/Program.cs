@@ -1,9 +1,9 @@
 using DEBUG.BL;
 using DEBUG.DAL;
 using DEBUG.DAL.Context;
-using DEBUG.Core.Models;
 using Microsoft.AspNetCore.Identity;
 using DEBUG.API;
+using DEBUG.Core.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
     opt.User.RequireUniqueEmail = true;
-    opt.SignIn.RequireConfirmedEmail = false;//
+    opt.SignIn.RequireConfirmedEmail = false;//TODO: Change this shit!
 
     opt.Password.RequiredUniqueChars = 3;
     opt.Password.RequiredLength = 8;

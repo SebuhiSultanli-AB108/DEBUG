@@ -1,6 +1,7 @@
 ﻿using DEBUG.BL.Exceptions;
 using DEBUG.BL.ExternalServices;
 using DEBUG.BL.Services.AnswerServices;
+using DEBUG.BL.Services.CommentServices;
 using DEBUG.BL.Services.QuestionServices;
 using DEBUG.BL.Services.UserServices;
 using FluentValidation;
@@ -20,7 +21,7 @@ public static class ServiceRegistrationsBL
         services.AddScoped<IAnswerService, AnswerService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IJWTTokenHandler, JWTTokenHandler>();
-        // services.AddScoped<ICommentService, CommentService>();
+        services.AddScoped<ICommentService, CommentService>();
         return services;
     }
 

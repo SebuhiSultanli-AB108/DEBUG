@@ -1,4 +1,4 @@
-﻿using DEBUG.Core.Models;
+﻿using DEBUG.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

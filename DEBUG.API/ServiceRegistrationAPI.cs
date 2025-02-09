@@ -1,4 +1,4 @@
-﻿using DEBUG.BL.ViewModels.OptionsVMs;
+﻿using DEBUG.BL.DTOs.OptionsDTOs;
 using Microsoft.OpenApi.Models;
 
 namespace DEBUG.API;

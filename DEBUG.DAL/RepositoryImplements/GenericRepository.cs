@@ -1,4 +1,4 @@
-﻿using DEBUG.Core.Models;
+﻿using DEBUG.Core.Entities;
 using DEBUG.Core.RepositoryInstances;
 using DEBUG.DAL.Context;
 using Microsoft.EntityFrameworkCore;
@@ -39,9 +39,11 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
                 query = query.Include(include);
         return query.Where(expression);
     }
-    public async Task<T?> GetByIdAsync(int id, params string[]? includes)
+    public async Task<T?> GetByIdAsync(int id, Expression<Func<T, bool>>? where = null, params string[]? includes)
     {
         var query = Table.AsQueryable();
+        if (where != null)
+            query = query.Where(where);
 
         if (includes != null && includes.Count() != 0)
             foreach (var include in includes)

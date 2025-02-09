@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using DEBUG.BL.DTOs.AccountDTOs;
 using DEBUG.BL.Services.UserServices;
-using DEBUG.BL.ViewModels.AccountVMs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEBUG.API.Controllers;
@@ -9,21 +9,28 @@ namespace DEBUG.API.Controllers;
 [ApiController]
 public class UserController(IUserService _service, IMapper _mapper) : ControllerBase
 {
-    [HttpPost("[action]")]
-    public async Task<IActionResult> Register(RegisterVM vm)
-    {
-        return Ok(await _service.RegisterAsync(vm));
-    }
-
-    [HttpPost("[action]")]
-    public async Task<IActionResult> Login(LoginVM vm)
-    {
-        return Ok(await _service.LoginAsync(vm));
-    }
     [HttpGet("[action]")]
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await _service.GetAllAsync());
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Register(RegisterDTO dto)
+    {
+        return Ok(await _service.RegisterAsync(dto));
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Login(LoginDTO dto)
+    {
+        return Ok(await _service.LoginAsync(dto));
+    }
+    [HttpPost("[action]")]
     public async Task<IActionResult> Logout()
     {
         await _service.LogoutAsync();
         return Ok();
     }
+    //getquestions
+    //getanswers
+    //getcomments
 }

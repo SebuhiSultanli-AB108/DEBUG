@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DEBUG.BL.ViewModels.CommentVMs;
-using DEBUG.Core.Models;
+using DEBUG.BL.DTOs.CommentDTOs;
+using DEBUG.Core.Entities;
 
 namespace DEBUG.BL.Profiles;
 
@@ -8,7 +8,11 @@ public class CommentProfile : Profile
 {
     public CommentProfile()
     {
-        CreateMap<CommentCreateVM, Comment>();
-        CreateMap<CommentGetVM, Comment>().ReverseMap();
+        CreateMap<CommentCreateDTO, Comment>();
+        CreateMap<CommentUpdateDTO, Comment>()
+            .ReverseMap();
+        CreateMap<CommentGetDTO, Comment>()
+            .ForMember(x => x.User, opt => opt.MapFrom(x => x.UserName))
+            .ReverseMap();
     }
 }

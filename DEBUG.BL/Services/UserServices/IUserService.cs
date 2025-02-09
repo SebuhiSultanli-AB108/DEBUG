@@ -1,10 +1,12 @@
-﻿using DEBUG.BL.ViewModels.AccountVMs;
+﻿using DEBUG.BL.DTOs.AccountDTOs;
+using DEBUG.Core.Entities;
 
 namespace DEBUG.BL.Services.UserServices;
 
 public interface IUserService
 {
-    Task<string> RegisterAsync(RegisterVM vm);
-    Task<string> LoginAsync(LoginVM vm);
+    Task<IEnumerable<User>> GetAllAsync();
+    Task<string> RegisterAsync(RegisterDTO dto);
+    Task<string> LoginAsync(LoginDTO dto);
     Task LogoutAsync();
 }

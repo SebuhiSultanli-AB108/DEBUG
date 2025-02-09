@@ -1,4 +1,4 @@
-﻿using DEBUG.Core.Models;
+﻿using DEBUG.Core.Entities;
 
 namespace DEBUG.BL.ExternalServices;
 

@@ -1,6 +1,6 @@
-﻿namespace DEBUG.BL.ViewModels.QuestionVMs;
+﻿namespace DEBUG.BL.DTOs.QuestionDTOs;
 
-public class QuestionGetVM
+public class QuestionGetDTO
 {
     public int Id { get; set; }
     public string Title { get; set; }
@@ -8,5 +8,5 @@ public class QuestionGetVM
     public int Like { get; set; }
     public int DisLike { get; set; }
     public string UserName { get; set; }
-    public string UserImage { get; set; } = "ImageHere"; //TODO: Change this shit!
+    public string UserProfileImage { get; set; }
 }

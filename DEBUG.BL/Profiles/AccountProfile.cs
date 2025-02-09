@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DEBUG.BL.ViewModels.AccountVMs;
-using DEBUG.Core.Models;
+using DEBUG.BL.DTOs.AccountDTOs;
+using DEBUG.Core.Entities;
 
 namespace DEBUG.BL.Profiles;
 
@@ -8,7 +8,7 @@ public class AccountProfile : Profile
 {
     public AccountProfile()
     {
-        CreateMap<RegisterVM, User>();
-        CreateMap<LoginVM, User>();
+        CreateMap<RegisterDTO, User>();
+        CreateMap<LoginDTO, User>();
     }
 }

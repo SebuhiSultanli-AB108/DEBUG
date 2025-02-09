@@ -22,7 +22,7 @@ namespace DEBUG.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DEBUG.Core.Models.Answer", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Answer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Comment", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,8 +93,14 @@ namespace DEBUG.DAL.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DisLike")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Like")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -114,7 +120,7 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Question", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,7 +169,7 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.User", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -373,15 +379,15 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Answer", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Answer", b =>
                 {
-                    b.HasOne("DEBUG.Core.Models.Question", "Question")
+                    b.HasOne("DEBUG.Core.Entities.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("DEBUG.Core.Models.User", "User")
+                    b.HasOne("DEBUG.Core.Entities.User", "User")
                         .WithMany("Answers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -392,15 +398,15 @@ namespace DEBUG.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Comment", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Comment", b =>
                 {
-                    b.HasOne("DEBUG.Core.Models.Answer", "Answer")
+                    b.HasOne("DEBUG.Core.Entities.Answer", "Answer")
                         .WithMany("Comments")
                         .HasForeignKey("AnswerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DEBUG.Core.Models.User", "User")
+                    b.HasOne("DEBUG.Core.Entities.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -411,9 +417,9 @@ namespace DEBUG.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Question", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Question", b =>
                 {
-                    b.HasOne("DEBUG.Core.Models.User", "User")
+                    b.HasOne("DEBUG.Core.Entities.User", "User")
                         .WithMany("Questions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -433,7 +439,7 @@ namespace DEBUG.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("DEBUG.Core.Models.User", null)
+                    b.HasOne("DEBUG.Core.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -442,7 +448,7 @@ namespace DEBUG.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("DEBUG.Core.Models.User", null)
+                    b.HasOne("DEBUG.Core.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -457,7 +463,7 @@ namespace DEBUG.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DEBUG.Core.Models.User", null)
+                    b.HasOne("DEBUG.Core.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -466,24 +472,24 @@ namespace DEBUG.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("DEBUG.Core.Models.User", null)
+                    b.HasOne("DEBUG.Core.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Answer", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Answer", b =>
                 {
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.Question", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.Question", b =>
                 {
                     b.Navigation("Answers");
                 });
 
-            modelBuilder.Entity("DEBUG.Core.Models.User", b =>
+            modelBuilder.Entity("DEBUG.Core.Entities.User", b =>
                 {
                     b.Navigation("Answers");
 

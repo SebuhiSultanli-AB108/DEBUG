@@ -1,4 +1,4 @@
-﻿namespace DEBUG.BL.ViewModels.OptionsVMs;
+﻿namespace DEBUG.BL.DTOs.OptionsDTOs;
 
 public class JWTOption
 {

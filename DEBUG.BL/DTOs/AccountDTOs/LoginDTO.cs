@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DEBUG.BL.ViewModels.AccountVMs;
+namespace DEBUG.BL.DTOs.AccountDTOs;
 
-public class LoginVM
+public class LoginDTO
 {
     [MaxLength(128), Required, DataType(DataType.EmailAddress)]
     public string Email { get; set; }

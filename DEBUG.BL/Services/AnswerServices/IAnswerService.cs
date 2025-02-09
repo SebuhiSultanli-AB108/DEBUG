@@ -1,15 +1,16 @@
-﻿using DEBUG.BL.ViewModels.AnswerVMs;
-using DEBUG.Core.Models;
+﻿using DEBUG.BL.DTOs.AnswerDTOs;
+using DEBUG.Core.Entities;
 
 namespace DEBUG.BL.Services.AnswerServices;
 
 public interface IAnswerService
 {
-    Task CreateAsync(AnswerCreateVM vm, int questionId, User user);
-    Task UpdateAsync(int id, AnswerCreateVM vm);
+    Task<int> CreateAsync(int questionId, AnswerCreateDTO dto, User user);
+    IEnumerable<AnswerGetDTO> GetAllByQuestionId(int questionId);
+    Task<AnswerGetDTO> UpdateAsync(int id, AnswerUpdateDTO dto);
     Task HardDeleteAsync(int id);
-    Task SoftDeleteAndRestore(int id);
-    IEnumerable<AnswerGetVM> GetAll();
-    IEnumerable<AnswerGetVM> GetByQuestionId(int id);
-    Task<AnswerGetVM> GetByIdAsync(int id);
+    Task SoftDeleteOrRestoreAsync(int id);
+    //IEnumerable<AnswerGetDTO> GetAll();
+    Task<IEnumerable<AnswerGetDTO>> GetByUserIdAsync(string id);
+    Task<AnswerGetDTO> GetByIdAsync(int id);
 }

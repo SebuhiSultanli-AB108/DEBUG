@@ -1,4 +1,4 @@
-﻿using DEBUG.Core.Models;
+﻿using DEBUG.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
