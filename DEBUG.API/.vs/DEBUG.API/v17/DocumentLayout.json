@@ -3,27 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\answerdtos\\answergetdto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\profiles\\questionprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\profiles\\answerprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\questionservices\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\answerservices\\answerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A146058-BBC7-498D-AD6D-097D655F05AE}|..\\DEBUG.DAL\\DEBUG.DAL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.dal\\repositoryimplements\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\answerservices\\ianswerservice.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\answercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\answercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\commentdtos\\commentcreatedto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\questiondtos\\questiongetdto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,99 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 313,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AnswerGetDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\AnswerDTOs\\AnswerGetDTO.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\AnswerDTOs\\AnswerGetDTO.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\AnswerDTOs\\AnswerGetDTO.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\AnswerDTOs\\AnswerGetDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:22:10.315Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AnswerProfile.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Profiles\\AnswerProfile.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Profiles\\AnswerProfile.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Profiles\\AnswerProfile.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\Profiles\\AnswerProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:19:56.803Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAnswerService.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\AnswerServices\\IAnswerService.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\AnswerServices\\IAnswerService.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\AnswerServices\\IAnswerService.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\Services\\AnswerServices\\IAnswerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:18:30.004Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AnswerService.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\AnswerServices\\AnswerService.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\AnswerServices\\AnswerService.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\AnswerServices\\AnswerService.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\Services\\AnswerServices\\AnswerService.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAABYAAACEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:18:10.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AnswerController.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\AnswerController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AnswerController.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\AnswerController.cs",
-              "RelativeToolTip": "Controllers\\AnswerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:18:07.027Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CommentCreateDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\CommentDTOs\\CommentCreateDTO.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\CommentDTOs\\CommentCreateDTO.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\CommentDTOs\\CommentCreateDTO.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\CommentDTOs\\CommentCreateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:08:57.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CommentController.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\CommentController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CommentController.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\CommentController.cs",
-              "RelativeToolTip": "Controllers\\CommentController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:06:43.558Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -133,6 +31,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuestionGetDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuestionDTOs\\QuestionGetDTO.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\QuestionDTOs\\QuestionGetDTO.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuestionDTOs\\QuestionGetDTO.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\QuestionDTOs\\QuestionGetDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T17:02:38.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuestionProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Profiles\\QuestionProfile.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Profiles\\QuestionProfile.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Profiles\\QuestionProfile.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Profiles\\QuestionProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:58:37.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuestionService.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\QuestionServices\\QuestionService.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\QuestionServices\\QuestionService.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\QuestionServices\\QuestionService.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Services\\QuestionServices\\QuestionService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwA4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:56:24.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\RepositoryImplements\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.DAL\\RepositoryImplements\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\RepositoryImplements\\GenericRepository.cs",
+              "RelativeToolTip": "..\\DEBUG.DAL\\RepositoryImplements\\GenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:56:20.707Z",
+              "EditorCaption": ""
             }
           ]
         }

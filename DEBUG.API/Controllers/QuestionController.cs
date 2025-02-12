@@ -1,6 +1,7 @@
 ﻿using DEBUG.BL.DTOs.QuestionDTOs;
 using DEBUG.BL.Services.QuestionServices;
 using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +9,13 @@ namespace DEBUG.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class QuestionController(IQuestionService _service, UserManager<User> _userManager) : ControllerBase
 {
     [HttpGet("[action]")]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAllAsync()
     {
-        return Ok(_service.GetAll());
+        return Ok(await _service.GetAllAsync());
     }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)
@@ -21,9 +23,9 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
         return Ok(await _service.GetByIdAsync(id));
     }
     [HttpPost("[action]")]
-    public async Task<IActionResult> Create(QuestionCreateDTO dto)
+    public async Task<IActionResult> Create(int categoryId, QuestionCreateDTO dto)
     {
-        var res = await _service.CreateAsync(dto, await _userManager.GetUserAsync(User));
+        var res = await _service.CreateAsync(categoryId, dto, await _userManager.GetUserAsync(User));
         return Ok(res);
     }
     [HttpPut("[action]")]

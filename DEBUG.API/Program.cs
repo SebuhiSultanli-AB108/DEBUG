@@ -16,6 +16,7 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddServer(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
     opt.User.RequireUniqueEmail = true;
@@ -32,12 +33,12 @@ builder.Services.AddIdentity<User, IdentityRole>(opt =>
     opt.Lockout.MaxFailedAccessAttempts = 3;
 
 }).AddEntityFrameworkStores<AppDbContext>()
-  .AddDefaultTokenProviders(); ;
+  .AddDefaultTokenProviders();
+
 builder.Services.AddMapperProfiles();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
 app.UseStaticFiles();
 if (app.Environment.IsDevelopment())
 {
@@ -48,7 +49,6 @@ if (app.Environment.IsDevelopment())
         opt.InjectStylesheet("/swagger-ui/SwaggerDark.css");
     });
 }
-
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

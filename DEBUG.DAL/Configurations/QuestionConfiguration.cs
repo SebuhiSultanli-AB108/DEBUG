@@ -18,5 +18,12 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
         builder.HasOne(x => x.User)
             .WithMany(x => x.Questions)
             .HasForeignKey(x => x.UserId);
+        builder.HasOne(x => x.Category)
+            .WithMany(x => x.Questions)
+            .HasForeignKey(x => x.CategoryId)
+            .OnDelete(DeleteBehavior.NoAction);
+        builder.HasMany(x => x.Tags)
+            .WithMany(x => x.Questions)
+            .UsingEntity("QuestionTag");
     }
 }

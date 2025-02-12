@@ -3,6 +3,7 @@ using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.AnswerServices;
 using DEBUG.BL.Services.QuestionServices;
 using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +11,14 @@ namespace DEBUG.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class AnswerController(IAnswerService _answerService, IQuestionService _questionService, UserManager<User> _userManager) : ControllerBase
 {
     [HttpGet("[action]")]
     public async Task<IActionResult> GetAllByQuestionId(int questionId)
     {
         if (await _questionService.GetByIdAsync(questionId) == null) throw new NotFoundException<Question>();
-        return Ok(_answerService.GetAllByQuestionId(questionId));
+        return Ok(await _answerService.GetAllByQuestionIdAsync(questionId));
     }
     //[HttpGet("[action]")]
     //public IActionResult GetAll()

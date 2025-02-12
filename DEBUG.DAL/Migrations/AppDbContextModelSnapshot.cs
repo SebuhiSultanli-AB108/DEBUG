@@ -71,6 +71,38 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("Answers");
                 });
 
+            modelBuilder.Entity("DEBUG.Core.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("DEBUG.Core.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -128,6 +160,9 @@ namespace DEBUG.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(4096)
@@ -162,11 +197,45 @@ namespace DEBUG.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("DEBUG.Core.Entities.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("DEBUG.Core.Entities.User", b =>
@@ -379,6 +448,21 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("QuestionTag", b =>
+                {
+                    b.Property<int>("QuestionsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuestionsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("QuestionTag");
+                });
+
             modelBuilder.Entity("DEBUG.Core.Entities.Answer", b =>
                 {
                     b.HasOne("DEBUG.Core.Entities.Question", "Question")
@@ -419,11 +503,19 @@ namespace DEBUG.DAL.Migrations
 
             modelBuilder.Entity("DEBUG.Core.Entities.Question", b =>
                 {
+                    b.HasOne("DEBUG.Core.Entities.Category", "Category")
+                        .WithMany("Questions")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("DEBUG.Core.Entities.User", "User")
                         .WithMany("Questions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });
@@ -479,9 +571,29 @@ namespace DEBUG.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("QuestionTag", b =>
+                {
+                    b.HasOne("DEBUG.Core.Entities.Question", null)
+                        .WithMany()
+                        .HasForeignKey("QuestionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DEBUG.Core.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DEBUG.Core.Entities.Answer", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("DEBUG.Core.Entities.Category", b =>
+                {
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("DEBUG.Core.Entities.Question", b =>

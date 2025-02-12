@@ -1,31 +1,34 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.QuestionDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
+using DEBUG.BL.Services.TagServices;
 using DEBUG.Core.Entities;
 using DEBUG.Core.RepositoryInstances;
 using Microsoft.AspNetCore.Identity;
 
 namespace DEBUG.BL.Services.QuestionServices;
 
-public class QuestionService(IQuestionRepository _repository, UserManager<User> _userManager, IMapper _mapper) : IQuestionService
+public class QuestionService(IQuestionRepository _repository, ITagService _tagService, UserManager<User> _userManager, IMapper _mapper) : IQuestionService
 {
-    public async Task<int> CreateAsync(QuestionCreateDTO dto, User user)
+    public async Task<int> CreateAsync(int CategoryId, QuestionCreateDTO dto, User user)
     {
         Question question = _mapper.Map<Question>(dto);
         question.UserId = user.Id;
+        question.CategoryId = CategoryId;
+        question.Tags = _mapper.Map<IEnumerable<Tag>>(await _tagService.GetRangeByIdsAsync(dto.TagIds));
         await _repository.CreateAsync(question);
         await _repository.SaveChangesAsync();
         return question.Id;
     }
 
-    public IEnumerable<QuestionGetDTO> GetAll()
+    public async Task<IEnumerable<QuestionGetDTO>> GetAllAsync()
     {
-        return _mapper.Map<IEnumerable<QuestionGetDTO>>(_repository.GetWhere(x => x.IsDeleted == false, "User"));
+        return _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, ["User", "Category", "Tags"]));
     }
 
     public async Task<QuestionGetDTO> GetByIdAsync(int id)
     {
-        Question? question = await _repository.GetByIdAsync(id, x => x.IsDeleted == false, "User");
+        Question? question = await _repository.GetByIdAsync(id, x => x.IsDeleted == false, ["User", "Category", "Tags"]);
         if (question == null) throw new NotFoundException<Question>();
         return _mapper.Map<QuestionGetDTO>(question);
     }
@@ -33,7 +36,7 @@ public class QuestionService(IQuestionRepository _repository, UserManager<User> 
     public async Task<IEnumerable<QuestionGetDTO>> GetByUserIdAsync(string id)
     {
         if (await _userManager.FindByIdAsync(id) == null) throw new NotFoundException<User>();
-        return _mapper.Map<IEnumerable<QuestionGetDTO>>(_repository.GetWhere(x => x.UserId == id, "User"));
+        return _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.UserId == id, ["User", "Category", "Tags"]));
     }
     public async Task HardDeleteAsync(int id)
     {
@@ -55,7 +58,6 @@ public class QuestionService(IQuestionRepository _repository, UserManager<User> 
     {
         Question? question = await _repository.GetByIdAsync(id);
         if (question == null) throw new NotFoundException<Question>();
-        question.UpdatedAt = DateTime.Now;
         _mapper.Map(dto, question);
         await _repository.SaveChangesAsync();
         return _mapper.Map<QuestionGetDTO>(question);

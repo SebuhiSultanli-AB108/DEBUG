@@ -1,8 +1,10 @@
 ﻿using DEBUG.BL.Exceptions;
 using DEBUG.BL.ExternalServices;
 using DEBUG.BL.Services.AnswerServices;
+using DEBUG.BL.Services.CategoryServices;
 using DEBUG.BL.Services.CommentServices;
 using DEBUG.BL.Services.QuestionServices;
+using DEBUG.BL.Services.TagServices;
 using DEBUG.BL.Services.UserServices;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -17,11 +19,13 @@ public static class ServiceRegistrationsBL
 {
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
-        services.AddScoped<IQuestionService, QuestionService>();
-        services.AddScoped<IAnswerService, AnswerService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IJWTTokenHandler, JWTTokenHandler>();
+        services.AddScoped<IQuestionService, QuestionService>();
+        services.AddScoped<IAnswerService, AnswerService>();
         services.AddScoped<ICommentService, CommentService>();
+        services.AddScoped<ITagService, TagService>();
+        services.AddScoped<ICategoryService, CategoryService>();
         return services;
     }
 

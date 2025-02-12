@@ -18,9 +18,9 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
         await _repository.SaveChangesAsync();
         return Answer.Id;
     }
-    public IEnumerable<AnswerGetDTO> GetAllByQuestionId(int questionId)
+    public async Task<IEnumerable<AnswerGetDTO>> GetAllByQuestionIdAsync(int questionId)
     {
-        return _mapper.Map<IEnumerable<AnswerGetDTO>>(_repository.GetWhere(x => x.IsDeleted == false && x.QuestionId == questionId, "User"));
+        return _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.QuestionId == questionId, "User"));
     }
     //public IEnumerable<AnswerGetDTO> GetAll()
     //{
@@ -35,7 +35,7 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
     public async Task<IEnumerable<AnswerGetDTO>> GetByUserIdAsync(string id)
     {
         if (await _userManager.FindByIdAsync(id) == null) throw new NotFoundException<User>();
-        return _mapper.Map<IEnumerable<AnswerGetDTO>>(_repository.GetWhere(x => x.UserId == id, "User"));
+        return _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(x => x.UserId == id, "User"));
     }
     public async Task HardDeleteAsync(int id)
     {
@@ -55,7 +55,6 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
     {
         Answer? answer = await _repository.GetByIdAsync(id);
         if (answer == null) throw new NotFoundException<Answer>();
-        answer.UpdatedAt = DateTime.Now;
         _mapper.Map(dto, answer);
         await _repository.SaveChangesAsync();
         return _mapper.Map<AnswerGetDTO>(answer);

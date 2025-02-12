@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.AccountDTOs;
 using DEBUG.BL.Services.UserServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEBUG.API.Controllers;
@@ -25,6 +26,7 @@ public class UserController(IUserService _service, IMapper _mapper) : Controller
         return Ok(await _service.LoginAsync(dto));
     }
     [HttpPost("[action]")]
+    [Authorize]
     public async Task<IActionResult> Logout()
     {
         await _service.LogoutAsync();

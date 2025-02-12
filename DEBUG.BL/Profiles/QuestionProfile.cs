@@ -11,8 +11,11 @@ public class QuestionProfile : Profile
         CreateMap<QuestionCreateDTO, Question>();
         CreateMap<QuestionUpdateDTO, Question>()
             .ReverseMap();
-        CreateMap<QuestionGetDTO, Question>()
-            .ForMember(x => x.User, opt => opt.MapFrom(x => x.UserName))
+        CreateMap<Question, QuestionGetDTO>()
+            .ForMember(x => x.UserName, opt => opt.MapFrom(x => x.User.UserName))
+            .ForMember(x => x.UserProfileImage, opt => opt.MapFrom(x => x.User.ProfileImage))
+            .ForMember(x => x.CategoryName, opt => opt.MapFrom(x => x.Category.Name))
+            .ForMember(x => x.Tags, opt => opt.MapFrom(x => x.Tags))
             .ReverseMap();
     }
 }

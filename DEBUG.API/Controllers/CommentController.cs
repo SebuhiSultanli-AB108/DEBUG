@@ -3,6 +3,7 @@ using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.AnswerServices;
 using DEBUG.BL.Services.CommentServices;
 using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +11,14 @@ namespace DEBUG.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class CommentController(IAnswerService _answerService, ICommentService _commentService, UserManager<User> _userManager) : ControllerBase
 {
     [HttpGet("[action]")]
     public async Task<IActionResult> GetAllByAnswerId(int answerId)
     {
         if (await _answerService.GetByIdAsync(answerId) == null) throw new NotFoundException<Answer>();
-        return Ok(_commentService.GetAllByAnswerId(answerId));
+        return Ok(await _commentService.GetAllByAnswerIdAsync(answerId));
     }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)

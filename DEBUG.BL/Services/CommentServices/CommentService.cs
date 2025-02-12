@@ -18,13 +18,13 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
         await _repository.SaveChangesAsync();
         return Comment.Id;
     }
-    public IEnumerable<CommentGetDTO> GetAllByAnswerId(int answerId)
+    public async Task<IEnumerable<CommentGetDTO>> GetAllByAnswerIdAsync(int answerId)
     {
-        return _mapper.Map<IEnumerable<CommentGetDTO>>(_repository.GetWhere(x => x.IsDeleted == false && x.AnswerId == answerId, "User"));
+        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.AnswerId == answerId, "User"));
     }
-    public IEnumerable<CommentGetDTO> GetAll()
+    public async Task<IEnumerable<CommentGetDTO>> GetAllAsync()
     {
-        return _mapper.Map<IEnumerable<CommentGetDTO>>(_repository.GetWhere(x => x.IsDeleted == false, "User"));
+        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, "User"));
     }
     public async Task<CommentGetDTO> GetByIdAsync(int id)
     {
@@ -35,7 +35,7 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
     public async Task<IEnumerable<CommentGetDTO>> GetByUserIdAsync(string id)
     {
         if (await _userManager.FindByIdAsync(id) == null) throw new NotFoundException<User>();
-        return _mapper.Map<IEnumerable<CommentGetDTO>>(_repository.GetWhere(x => x.UserId == id, "User"));
+        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.UserId == id, "User"));
     }
     public async Task HardDeleteAsync(int id)
     {
@@ -55,7 +55,6 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
     {
         Comment? comment = await _repository.GetByIdAsync(id);
         if (comment == null) throw new NotFoundException<Comment>();
-        comment.UpdatedAt = DateTime.Now;
         _mapper.Map(dto, comment);
         await _repository.SaveChangesAsync();
         return _mapper.Map<CommentGetDTO>(comment);
