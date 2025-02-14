@@ -14,6 +14,14 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
         entity.CreatedAt = DateTime.Now;
         await Table.AddAsync(entity);
     }
+    public async Task RangeCreateAsync(IEnumerable<T> entities)
+    {
+        foreach (var entity in entities)
+        {
+            entity.CreatedAt = DateTime.Now;
+            await Table.AddAsync(entity);
+        }
+    }
     public async Task HardDeleteAsync(T entity) => await Task.Run(() => Table.Remove(entity));
     public void SoftDeleteAndRestore(T entity)
     {

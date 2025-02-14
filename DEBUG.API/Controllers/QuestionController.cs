@@ -1,4 +1,5 @@
 ﻿using DEBUG.BL.DTOs.QuestionDTOs;
+using DEBUG.BL.Extensions;
 using DEBUG.BL.Services.QuestionServices;
 using DEBUG.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,7 @@ namespace DEBUG.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class QuestionController(IQuestionService _service, UserManager<User> _userManager) : ControllerBase
+public class QuestionController(IQuestionService _service, UserManager<User> _userManager, IWebHostEnvironment _wwwRoot) : ControllerBase
 {
     [HttpGet("[action]")]
     public async Task<IActionResult> GetAllAsync()
@@ -44,5 +45,10 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
     {
         await _service.HardDeleteAsync(id);
         return Ok();
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+        return Ok(await file.UploadAsync(_wwwRoot, "question"));
     }
 }

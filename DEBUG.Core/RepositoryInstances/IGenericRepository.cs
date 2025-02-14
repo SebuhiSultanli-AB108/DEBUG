@@ -10,6 +10,7 @@ public interface IGenericRepository<T> where T : BaseEntity, new()
     Task<List<T>?> GetRangeByIdsAsync(int[] ids, Expression<Func<T, bool>>? where = null, params string[]? includes);
     Task<IEnumerable<T>> GetWhereAsync(Expression<Func<T, bool>> expression, params string[]? includes);
     Task CreateAsync(T entity);
+    Task RangeCreateAsync(IEnumerable<T> entities);
     Task HardDeleteAsync(T entity);
     void SoftDeleteAndRestore(T entity);
     Task SaveChangesAsync();

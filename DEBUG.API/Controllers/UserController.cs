@@ -27,15 +27,21 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     {
         return Ok(await _service.LoginAsync(dto));
     }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> SetProfileImage(IFormFile image)
+    {
+        _service.SetProfileImage(await _userManager.GetUserAsync(User), image);
+        return Ok();
+    }
     [HttpGet("[action]")]
     public async Task<IActionResult> VerifyEmail(string token, string user)
     {
-        //token = token.Replace(" ", "%2B");
+        token = token.Replace(" ", "+");
         var entity = await _userManager.FindByNameAsync(user);
         //if (entity is null) 
         var result = await _userManager.ConfirmEmailAsync(entity, token);
         if (result.Succeeded)
-            return Ok();
+            return Ok("salam");
         else
             return BadRequest();
         //TODO: here

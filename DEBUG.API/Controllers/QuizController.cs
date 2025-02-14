@@ -14,6 +14,11 @@ namespace DEBUG.API.Controllers
             return Ok(await _service.GetAllAsync());
         }
         [HttpGet("[action]")]
+        public async Task<IActionResult> GetLevelAsync(int difficulty)
+        {
+            return Ok(await _service.Get5RandomQuestionsAsync(difficulty));
+        }
+        [HttpGet("[action]")]
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await _service.GetByIdAsync(id));
@@ -23,6 +28,12 @@ namespace DEBUG.API.Controllers
         {
             var res = await _service.CreateAsync(dto);
             return Ok(res);
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> RangedCreate(IEnumerable<QuizQuestionCreateDTO> dtos)
+        {
+            await _service.RangedCreateAsync(dtos);
+            return Ok();
         }
         [HttpPut("[action]")]
         public async Task<IActionResult> Update(int id, QuizQuestionUpdateDTO dto)

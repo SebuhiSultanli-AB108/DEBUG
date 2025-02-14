@@ -11,10 +11,20 @@ using DEBUG.BL.Exceptions.UserExceptions;
 using Microsoft.EntityFrameworkCore;
 using DEBUG.Core.Entities;
 using DEBUG.BL.Helpers.EmailTemplates;
+using DEBUG.BL.Extensions;
+using Microsoft.AspNetCore.Hosting;
+using DEBUG.DAL.Context;
 
 namespace DEBUG.BL.Services.UserServices;
 
-public class UserService(UserManager<User> _userManager, SignInManager<User> _signInManager, IJWTTokenHandler _tokenHandler, IMapper _mapper, IHttpContextAccessor accessor) : IUserService
+public class UserService(
+    UserManager<User> _userManager,
+    SignInManager<User> _signInManager,
+    AppDbContext _dbContext,
+    IJWTTokenHandler _tokenHandler,
+    IMapper _mapper,
+    IHttpContextAccessor accessor,
+    IWebHostEnvironment _wwwRoot) : IUserService
 {
     readonly HttpContext _context = accessor.HttpContext;
     public async Task<string> RegisterAsync(RegisterDTO dto)
@@ -47,6 +57,12 @@ public class UserService(UserManager<User> _userManager, SignInManager<User> _si
     {
         await _signInManager.SignOutAsync();
     }
+    public async Task SetProfileImage(User user, IFormFile image)
+    {
+        if (user is null) throw new NotFoundException<User>();
+        user.ProfileImage = await image.UploadAsync(_wwwRoot, "user", user.UserName);
+        await _dbContext.SaveChangesAsync();
+    }
     private void SendEmail(string token, string email, string username)
     {
         using SmtpClient client = new SmtpClient();
@@ -61,7 +77,7 @@ public class UserService(UserManager<User> _userManager, SignInManager<User> _si
         message.Subject = "<p>Verify your email address</p>";
         string url = _context.Request.Scheme
             + "://" + _context.Request.Host
-            + "/api/User/VerifyEmail?token=" + WebUtility.UrlEncode(token)
+            + "/api/User/VerifyEmail?token=" + token
             + "&user=" + username;
         message.Body = VerifyEmailTemplate.VerifyEmail.Replace("__$name", username).Replace("__$link", url);
         message.IsBodyHtml = true;

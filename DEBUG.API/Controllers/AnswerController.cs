@@ -1,5 +1,6 @@
 ﻿using DEBUG.BL.DTOs.AnswerDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
+using DEBUG.BL.Extensions;
 using DEBUG.BL.Services.AnswerServices;
 using DEBUG.BL.Services.QuestionServices;
 using DEBUG.Core.Entities;
@@ -12,7 +13,11 @@ namespace DEBUG.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class AnswerController(IAnswerService _answerService, IQuestionService _questionService, UserManager<User> _userManager) : ControllerBase
+public class AnswerController(
+    IAnswerService _answerService,
+    IQuestionService _questionService,
+    UserManager<User> _userManager,
+    IWebHostEnvironment _wwwRoot) : ControllerBase
 {
     [HttpGet("[action]")]
     public async Task<IActionResult> GetAllByQuestionId(int questionId)
@@ -52,5 +57,10 @@ public class AnswerController(IAnswerService _answerService, IQuestionService _q
     {
         await _answerService.HardDeleteAsync(id);
         return Ok();
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+        return Ok(await file.UploadAsync(_wwwRoot, "answer"));
     }
 }

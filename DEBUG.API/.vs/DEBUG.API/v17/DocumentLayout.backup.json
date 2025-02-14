@@ -3,23 +3,29 @@
   "WorkspaceRootPath": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\profiles\\quizquestionprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\quizquestiondtos\\quizquestionupdatedto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\userservices\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\quizquestionservices\\quizquestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\answercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\answercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\quizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\quizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\quizquestiondtos\\quizquestiongetdto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\services\\userservices\\iuserservice.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\quizanswerdtos\\quizanswergetdto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\extensions\\iformfileextencion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,47 +35,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 313,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "QuizAnswerGetDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuizAnswerDTOs\\QuizAnswerGetDTO.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\QuizAnswerDTOs\\QuizAnswerGetDTO.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuizAnswerDTOs\\QuizAnswerGetDTO.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\QuizAnswerDTOs\\QuizAnswerGetDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:38:26.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "QuizQuestionUpdateDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionUpdateDTO.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionUpdateDTO.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionUpdateDTO.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionUpdateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:35:47.205Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "QuizQuestionProfile.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Profiles\\QuizQuestionProfile.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Profiles\\QuizQuestionProfile.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Profiles\\QuizQuestionProfile.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\Profiles\\QuizQuestionProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:15:58.462Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -80,41 +47,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "QuizQuestionGetDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionGetDTO.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionGetDTO.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionGetDTO.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\QuizQuestionDTOs\\QuizQuestionGetDTO.cs",
+              "DocumentIndex": 3,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\TestController.cs",
+              "RelativeToolTip": "Controllers\\TestController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:16:14.067Z",
+              "WhenOpened": "2025-02-14T17:45:16.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IFormFileExtencion.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Extensions\\IFormFileExtencion.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Extensions\\IFormFileExtencion.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Extensions\\IFormFileExtencion.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Extensions\\IFormFileExtencion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T17:43:57.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\UserServices\\IUserService.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\UserServices\\IUserService.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\UserServices\\IUserService.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Services\\UserServices\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T17:37:50.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\Services\\UserServices\\UserService.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAWwEQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T17:37:41.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuestionController.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "Controllers\\QuestionController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T17:28:19.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowCgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T17:20:27.112Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "QuizQuestionService.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\QuizQuestionServices\\QuizQuestionService.cs",
-              "RelativeDocumentMoniker": "..\\DEBUG.BL\\Services\\QuizQuestionServices\\QuizQuestionService.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\Services\\QuizQuestionServices\\QuizQuestionService.cs",
-              "RelativeToolTip": "..\\DEBUG.BL\\Services\\QuizQuestionServices\\QuizQuestionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAiAAAAAAAAAA==",
+              "Title": "AnswerController.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\AnswerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AnswerController.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\AnswerController.cs",
+              "RelativeToolTip": "Controllers\\AnswerController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAYwDIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:15:49.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "QuizController.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\QuizController.cs",
-              "RelativeDocumentMoniker": "Controllers\\QuizController.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\QuizController.cs",
-              "RelativeToolTip": "Controllers\\QuizController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T13:58:56.767Z",
+              "WhenOpened": "2025-02-14T17:19:58.506Z",
               "EditorCaption": ""
             }
           ]

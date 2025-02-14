@@ -17,6 +17,21 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
         return question.Id;
     }
 
+    public async Task RangedCreateAsync(IEnumerable<QuizQuestionCreateDTO> dtos)
+    {
+        foreach (var dto in dtos)
+        {
+            QuizQuestion question = _mapper.Map<QuizQuestion>(dto);
+            question.QuizAnswers = _mapper.Map<IEnumerable<QuizAnswer>>(dto.QuizAnswerCreateDTOs);
+            await _repository.CreateAsync(question);
+        }
+        await _repository.SaveChangesAsync();
+    }
+    public async Task<IEnumerable<QuizQuestionGetDTO>> Get5RandomQuestionsAsync(int difficulty)
+    {
+        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(x => x.Difficulty == difficulty);
+        return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(questions.OrderBy(x => Guid.NewGuid()).Take(5));
+    }
     public async Task<IEnumerable<QuizQuestionGetDTO>> GetAllAsync()
     {
         return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, ["QuizAnswers", "Tag"]));
