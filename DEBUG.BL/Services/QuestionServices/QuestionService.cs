@@ -15,7 +15,7 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         Question question = _mapper.Map<Question>(dto);
         question.UserId = user.Id;
         question.CategoryId = CategoryId;
-        question.Tags = _mapper.Map<IEnumerable<Tag>>(await _tagService.GetRangeByIdsAsync(dto.TagIds));
+        question.Tags = await _tagService.GetRangeByIdsAsync(dto.TagIds); ;
         await _repository.CreateAsync(question);
         await _repository.SaveChangesAsync();
         return question.Id;

@@ -1,4 +1,4 @@
-﻿using DEBUG.Core.Entities;
+﻿using DEBUG.BL.DTOs.TagDTOs;
 
 namespace DEBUG.BL.DTOs.QuestionDTOs;
 
@@ -9,7 +9,7 @@ public class QuestionGetDTO
     public string Content { get; set; }
     public int Like { get; set; }
     public int DisLike { get; set; }
-    public IEnumerable<Tag> Tags { get; set; }
+    public IEnumerable<TagGetDTO> Tags { get; set; }
     public string CategoryName { get; set; }
     public string UserName { get; set; }
     public string UserProfileImage { get; set; }

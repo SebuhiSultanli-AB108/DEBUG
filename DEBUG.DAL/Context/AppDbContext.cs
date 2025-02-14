@@ -13,6 +13,8 @@ public class AppDbContext : IdentityDbContext<User>
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<QuizQuestion> QuizQuestions { get; set; }
+    public DbSet<QuizAnswer> QuizAnswers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

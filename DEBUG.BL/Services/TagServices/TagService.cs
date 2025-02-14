@@ -28,10 +28,9 @@ public class TagService(ITagRepository _repository, IMapper _mapper) : ITagServi
         return _mapper.Map<TagGetDTO>(tag);
     }
 
-    public async Task<IEnumerable<TagGetDTO>> GetRangeByIdsAsync(int[] ids)
+    public async Task<IEnumerable<Tag>> GetRangeByIdsAsync(int[] ids)
     {
-        var arr = await _repository.GetRangeByIdsAsync(ids);
-        return _mapper.Map<IEnumerable<TagGetDTO>>(arr);
+        return await _repository.GetRangeByIdsAsync(ids);
     }
 
     public async Task HardDeleteAsync(int id)

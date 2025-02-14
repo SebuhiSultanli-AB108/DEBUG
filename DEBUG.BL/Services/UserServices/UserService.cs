@@ -10,12 +10,13 @@ using DEBUG.Core.Enums;
 using DEBUG.BL.Exceptions.UserExceptions;
 using Microsoft.EntityFrameworkCore;
 using DEBUG.Core.Entities;
+using DEBUG.BL.Helpers.EmailTemplates;
 
 namespace DEBUG.BL.Services.UserServices;
 
-public class UserService(UserManager<User> _userManager, SignInManager<User> _signInManager, IJWTTokenHandler _tokenHandler, IMapper _mapper) : IUserService
+public class UserService(UserManager<User> _userManager, SignInManager<User> _signInManager, IJWTTokenHandler _tokenHandler, IMapper _mapper, IHttpContextAccessor accessor) : IUserService
 {
-    readonly HttpContext _context;
+    readonly HttpContext _context = accessor.HttpContext;
     public async Task<string> RegisterAsync(RegisterDTO dto)
     {
         if (!dto.HasAcceptedTerms)
@@ -24,7 +25,7 @@ public class UserService(UserManager<User> _userManager, SignInManager<User> _si
         newUser.Role = Roles.User.ToString();
         await _userManager.CreateAsync(newUser, dto.Password);
         User? user = await _userManager.FindByEmailAsync(dto.Email);
-        //SendEmail(_tokenHandler.CreateToken(user, 1), user.Email); //TODO: Fix this shit!
+        SendEmail(await _userManager.GenerateEmailConfirmationTokenAsync(user), user.Email, user.UserName);
         return user.Id;
     }
     public async Task<IEnumerable<User>> GetAllAsync()
@@ -46,24 +47,24 @@ public class UserService(UserManager<User> _userManager, SignInManager<User> _si
     {
         await _signInManager.SignOutAsync();
     }
-    private void SendEmail(string token, string username)
+    private void SendEmail(string token, string email, string username)
     {
         using SmtpClient client = new SmtpClient();
         client.Host = "smtp.gmail.com";
         client.Port = 587;
         client.EnableSsl = true;
         client.UseDefaultCredentials = false;
-        client.Credentials = new NetworkCredential("sabuhies-ab108@code.edu.az", "lonk jxoz dbol want");
-        MailAddress from = new MailAddress("sabuhies-ab108@code.edu.az", "Blogg");
-        MailAddress to = new MailAddress("sultanlisebuhi@gmail.com");
+        client.Credentials = new NetworkCredential("debug.app.noreply@gmail.com", "qlfm vdmt dbka ngnl");
+        MailAddress from = new MailAddress("debug.app.noreply@gmail.com", "DEBUG");
+        MailAddress to = new MailAddress(email);
         MailMessage message = new MailMessage(from, to);
         message.Subject = "<p>Verify your email address</p>";
         string url = _context.Request.Scheme
             + "://" + _context.Request.Host
-            + "/Account/VerifyEmail?token=" + token
+            + "/api/User/VerifyEmail?token=" + WebUtility.UrlEncode(token)
             + "&user=" + username;
+        message.Body = VerifyEmailTemplate.VerifyEmail.Replace("__$name", username).Replace("__$link", url);
         message.IsBodyHtml = true;
         client.Send(message);
     }
-
 }

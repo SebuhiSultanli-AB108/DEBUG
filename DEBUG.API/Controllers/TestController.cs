@@ -9,7 +9,7 @@ public class TestController : ControllerBase
     [HttpGet("create-room")]
     public IActionResult CreateRoom()
     {
-        string Url = $"https://meet.jit.si/meeting-{Guid.NewGuid()}";
+        string Url = $"https://meet.jit.si/{Guid.NewGuid()}";
         return Ok(Url);
     }
 }

@@ -20,6 +20,7 @@ public static class ServiceRegistrationsDAL
         services.AddScoped<ICommentRepository, CommentRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ITagRepository, TagRepository>();
+        services.AddScoped<IQuizQuestionRepository, QuizQuestionRepository>();
         return services;
     }
 

@@ -4,4 +4,5 @@ public class Tag : BaseEntity
 {
     public string Name { get; set; }
     public IEnumerable<Question> Questions { get; set; }
+    public IEnumerable<QuizQuestion> QuizQuestions { get; set; }
 }

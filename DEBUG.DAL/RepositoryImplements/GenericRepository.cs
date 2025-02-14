@@ -40,15 +40,15 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
         query = _addIncludes(query, includes);
         return await query.FirstOrDefaultAsync(x => x.Id == id);
     }
-    public async Task<IEnumerable<T>?> GetRangeByIdsAsync(int[] ids, Expression<Func<T, bool>>? where = null, params string[]? includes)
+    public async Task<List<T>?> GetRangeByIdsAsync(int[] ids, Expression<Func<T, bool>>? where = null, params string[]? includes)
     {
         var query = Table.AsQueryable();
         query = _addWhere(query, where);
         query = _addIncludes(query, includes);
-        IEnumerable<T> list = [];
+        List<T> list = new List<T>();
         foreach (var id in ids)
         {
-            list.Append(await query.FirstOrDefaultAsync(x => x.Id == id));
+            list.Add(await query.FirstOrDefaultAsync(x => x.Id == id));
         }
         return list;
     }

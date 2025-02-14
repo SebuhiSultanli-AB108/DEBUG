@@ -206,6 +206,84 @@ namespace DEBUG.DAL.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("DEBUG.Core.Entities.QuizAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QuizQuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("QuizQuestionId");
+
+                    b.ToTable("QuizAnswers");
+                });
+
+            modelBuilder.Entity("DEBUG.Core.Entities.QuizQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Difficulty")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("QuizQuestions");
+                });
+
             modelBuilder.Entity("DEBUG.Core.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -520,6 +598,28 @@ namespace DEBUG.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DEBUG.Core.Entities.QuizAnswer", b =>
+                {
+                    b.HasOne("DEBUG.Core.Entities.QuizQuestion", "QuizQuestion")
+                        .WithMany("QuizAnswers")
+                        .HasForeignKey("QuizQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuizQuestion");
+                });
+
+            modelBuilder.Entity("DEBUG.Core.Entities.QuizQuestion", b =>
+                {
+                    b.HasOne("DEBUG.Core.Entities.Tag", "Tag")
+                        .WithMany("QuizQuestions")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -599,6 +699,16 @@ namespace DEBUG.DAL.Migrations
             modelBuilder.Entity("DEBUG.Core.Entities.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("DEBUG.Core.Entities.QuizQuestion", b =>
+                {
+                    b.Navigation("QuizAnswers");
+                });
+
+            modelBuilder.Entity("DEBUG.Core.Entities.Tag", b =>
+                {
+                    b.Navigation("QuizQuestions");
                 });
 
             modelBuilder.Entity("DEBUG.Core.Entities.User", b =>

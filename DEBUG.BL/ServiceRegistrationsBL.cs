@@ -4,6 +4,7 @@ using DEBUG.BL.Services.AnswerServices;
 using DEBUG.BL.Services.CategoryServices;
 using DEBUG.BL.Services.CommentServices;
 using DEBUG.BL.Services.QuestionServices;
+using DEBUG.BL.Services.QuizQuestionServices;
 using DEBUG.BL.Services.TagServices;
 using DEBUG.BL.Services.UserServices;
 using FluentValidation;
@@ -26,6 +27,7 @@ public static class ServiceRegistrationsBL
         services.AddScoped<ICommentService, CommentService>();
         services.AddScoped<ITagService, TagService>();
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IQuizQuestionService, QuizQuestionService>();
         return services;
     }
 
