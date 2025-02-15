@@ -16,7 +16,21 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
         await _repository.SaveChangesAsync();
         return question.Id;
     }
-
+    public async Task<int?> VerifyQuizAnswersAsync(int questionId, int answerId, User user)
+    {
+        QuizQuestion? question = await _repository.GetByIdAsync(questionId, null, "QuizAnswers");
+        if (question == null) throw new NotFoundException<QuizQuestion>();
+        QuizAnswer? wrightAnswer = question.QuizAnswers.Where(x => x.IsCorrect == true).FirstOrDefault();
+        QuizAnswer? givenAnswer = question.QuizAnswers.Where(x => x.Id == answerId).FirstOrDefault();
+        if (givenAnswer == null) throw new NotFoundException<QuizAnswer>();
+        if (wrightAnswer.Id == givenAnswer.Id)
+        {
+            user.CorrectQuizAnswerCount++;
+            await _repository.SaveChangesAsync();
+            return null;
+        }
+        else return wrightAnswer.Id;
+    }
     public async Task RangedCreateAsync(IEnumerable<QuizQuestionCreateDTO> dtos)
     {
         foreach (var dto in dtos)
@@ -29,7 +43,7 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
     }
     public async Task<IEnumerable<QuizQuestionGetDTO>> Get5RandomQuestionsAsync(int difficulty)
     {
-        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(x => x.Difficulty == difficulty);
+        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(x => x.Difficulty == difficulty, ["Tag", "QuizAnswers"]);
         return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(questions.OrderBy(x => Guid.NewGuid()).Take(5));
     }
     public async Task<IEnumerable<QuizQuestionGetDTO>> GetAllAsync()

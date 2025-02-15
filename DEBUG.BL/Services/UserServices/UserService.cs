@@ -42,6 +42,22 @@ public class UserService(
     {
         return await _userManager.Users.ToListAsync();
     }
+
+    public IEnumerable<string> GetBadges(User user)
+    {
+        List<string> badges = new();
+        void AddBadge(int count, int milestone1, string badge1, int milestone2, string badge2)
+        {
+            if (count >= milestone1)
+                badges.Add(count >= milestone2 ? badge2 : badge1);
+        }
+        AddBadge(user.Questions.Count(), 10, nameof(Badges.Question10), 25, nameof(Badges.Question25));
+        AddBadge(user.Answers.Count(), 10, nameof(Badges.Answer10), 25, nameof(Badges.Answer25));
+        AddBadge(user.Comments.Count(), 25, nameof(Badges.Comment25), 50, nameof(Badges.Comment50));
+        AddBadge(user.CorrectQuizAnswerCount, 25, nameof(Badges.Quiz25), 50, nameof(Badges.Quiz50));
+        return badges;
+    }
+
     public async Task<string> LoginAsync(LoginDTO dto)
     {
         User? user = await _userManager.FindByEmailAsync(dto.Email);
@@ -57,7 +73,7 @@ public class UserService(
     {
         await _signInManager.SignOutAsync();
     }
-    public async Task SetProfileImage(User user, IFormFile image)
+    public async Task SetProfileImageAsync(User user, IFormFile image)
     {
         if (user is null) throw new NotFoundException<User>();
         user.ProfileImage = await image.UploadAsync(_wwwRoot, "user", user.UserName);

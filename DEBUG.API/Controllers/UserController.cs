@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.AccountDTOs;
+using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.UserServices;
 using DEBUG.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DEBUG.API.Controllers;
 
@@ -30,21 +32,34 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     [HttpPost("[action]")]
     public async Task<IActionResult> SetProfileImage(IFormFile image)
     {
-        _service.SetProfileImage(await _userManager.GetUserAsync(User), image);
+        User? user = await _userManager.GetUserAsync(User);
+        if (user == null) throw new NotFoundException<User>();
+        await _service.SetProfileImageAsync(user, image);
         return Ok();
     }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetBadges()
+    {
+        User? user = await _userManager.Users
+            .Include(x => x.Questions)
+            .Include(x => x.Answers)
+            .Include(x => x.Comments)
+            .FirstOrDefaultAsync(x => x.Id == _userManager.GetUserId(User));
+        if (user == null) throw new NotFoundException<User>();
+        return Ok(new { BadgeList = _service.GetBadges(user) });
+    }
+
     [HttpGet("[action]")]
     public async Task<IActionResult> VerifyEmail(string token, string user)
     {
         token = token.Replace(" ", "+");
         var entity = await _userManager.FindByNameAsync(user);
-        //if (entity is null) 
+        if (entity is null) throw new NotFoundException<User>();
         var result = await _userManager.ConfirmEmailAsync(entity, token);
         if (result.Succeeded)
-            return Ok("salam");
+            return Ok("your email has been confirmed!");
         else
             return BadRequest();
-        //TODO: here
     }
     [HttpPost("[action]")]
     [Authorize]

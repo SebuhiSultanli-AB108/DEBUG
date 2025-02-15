@@ -1,12 +1,15 @@
 ﻿using DEBUG.BL.DTOs.QuizQuestionDTOs;
+using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.QuizQuestionServices;
+using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEBUG.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuizController(IQuizQuestionService _service) : ControllerBase
+    public class QuizController(IQuizQuestionService _service, UserManager<User> _userManager) : ControllerBase
     {
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAsync()
@@ -17,6 +20,13 @@ namespace DEBUG.API.Controllers
         public async Task<IActionResult> GetLevelAsync(int difficulty)
         {
             return Ok(await _service.Get5RandomQuestionsAsync(difficulty));
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> VerifyQuizAnswers(int questionId, int answerId)
+        {
+            User? user = await _userManager.GetUserAsync(User);
+            if (user == null) throw new NotFoundException<User>();
+            return Ok(await _service.VerifyQuizAnswersAsync(questionId, answerId, user));
         }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetById(int id)
