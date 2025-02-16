@@ -42,14 +42,18 @@ public class UserService(
     {
         return await _userManager.Users.ToListAsync();
     }
-
+    public async Task<UserGetDTO> GetUserById(string id)
+    {
+        User? user = await _userManager.FindByIdAsync(id);
+        if (user == null) throw new NotFoundException<User>();
+        return _mapper.Map<UserGetDTO>(user);
+    }
     public string GetBadges(User user)
     {
         return string.Join(", ", Enum.GetValues(typeof(Badges))
             .Cast<Badges>()
             .Where(badge => (user.Badges & badge) == badge));
     }
-
     public async Task<string> LoginAsync(LoginDTO dto)
     {
         User? user = await _userManager.FindByEmailAsync(dto.Email);
@@ -91,4 +95,5 @@ public class UserService(
         message.IsBodyHtml = true;
         client.Send(message);
     }
+
 }

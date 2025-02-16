@@ -14,6 +14,11 @@ namespace DEBUG.API.Controllers;
 public class UserController(IUserService _service, UserManager<User> _userManager, IMapper _mapper) : ControllerBase
 {
     [HttpGet("[action]")]
+    public async Task<IActionResult> GetById(string id)
+    {
+        return Ok(await _service.GetUserById(id));
+    }
+    [HttpGet("[action]")]
     public async Task<IActionResult> GetAll()
     {
         return Ok(await _service.GetAllAsync());

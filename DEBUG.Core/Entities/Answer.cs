@@ -10,4 +10,5 @@ public class Answer : BaseEntity
     public Question Question { get; set; }
     public string UserId { get; set; }
     public User User { get; set; }
+
 }

@@ -12,4 +12,5 @@ public class Question : BaseEntity
     public int CategoryId { get; set; }
     public Category Category { get; set; }
     public IEnumerable<Tag> Tags { get; set; }
+
 }

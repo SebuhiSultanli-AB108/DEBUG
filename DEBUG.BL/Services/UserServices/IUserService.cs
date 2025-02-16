@@ -6,6 +6,7 @@ namespace DEBUG.BL.Services.UserServices;
 
 public interface IUserService
 {
+    Task<UserGetDTO> GetUserById(string id);
     Task<IEnumerable<User>> GetAllAsync();
     string GetBadges(User user);
     Task<string> RegisterAsync(RegisterDTO dto);

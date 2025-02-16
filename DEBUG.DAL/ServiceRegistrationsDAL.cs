@@ -21,6 +21,7 @@ public static class ServiceRegistrationsDAL
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ITagRepository, TagRepository>();
         services.AddScoped<IQuizQuestionRepository, QuizQuestionRepository>();
+        services.AddScoped<IReportItemRepository, ReportItemRepository>();
         return services;
     }
 
