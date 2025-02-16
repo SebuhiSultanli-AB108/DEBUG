@@ -6,7 +6,6 @@ using DEBUG.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DEBUG.API.Controllers;
 
@@ -40,11 +39,7 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     [HttpGet("[action]")]
     public async Task<IActionResult> GetBadges()
     {
-        User? user = await _userManager.Users
-            .Include(x => x.Questions)
-            .Include(x => x.Answers)
-            .Include(x => x.Comments)
-            .FirstOrDefaultAsync(x => x.Id == _userManager.GetUserId(User));
+        User? user = await _userManager.GetUserAsync(User);
         if (user == null) throw new NotFoundException<User>();
         return Ok(new { BadgeList = _service.GetBadges(user) });
     }

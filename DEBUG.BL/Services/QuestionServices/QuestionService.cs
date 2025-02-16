@@ -3,6 +3,7 @@ using DEBUG.BL.DTOs.QuestionDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.TagServices;
 using DEBUG.Core.Entities;
+using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
 using Microsoft.AspNetCore.Identity;
 
@@ -17,6 +18,16 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         question.CategoryId = CategoryId;
         question.Tags = await _tagService.GetRangeByIdsAsync(dto.TagIds); ;
         await _repository.CreateAsync(question);
+
+        user.QuestionCount++;
+        if (user.QuestionCount >= 25)
+        {
+            user.Badges |= Badges.Question25;
+            user.Badges &= ~Badges.Question10;
+        }
+        else if (user.QuestionCount >= 10)
+            user.Badges |= Badges.Question10;
+
         await _repository.SaveChangesAsync();
         return question.Id;
     }

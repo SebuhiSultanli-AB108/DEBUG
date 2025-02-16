@@ -2,6 +2,7 @@
 using DEBUG.BL.DTOs.AnswerDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
+using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
 using Microsoft.AspNetCore.Identity;
 
@@ -15,6 +16,16 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
         Answer.QuestionId = questionId;
         Answer.UserId = user.Id;
         await _repository.CreateAsync(Answer);
+
+        user.AnswersCount++;
+        if (user.AnswersCount >= 25)
+        {
+            user.Badges |= Badges.Answer25;
+            user.Badges &= ~Badges.Answer10;
+        }
+        else if (user.AnswersCount >= 10)
+            user.Badges |= Badges.Answer10;
+
         await _repository.SaveChangesAsync();
         return Answer.Id;
     }

@@ -43,19 +43,11 @@ public class UserService(
         return await _userManager.Users.ToListAsync();
     }
 
-    public IEnumerable<string> GetBadges(User user)
+    public string GetBadges(User user)
     {
-        List<string> badges = new();
-        void AddBadge(int count, int milestone1, string badge1, int milestone2, string badge2)
-        {
-            if (count >= milestone1)
-                badges.Add(count >= milestone2 ? badge2 : badge1);
-        }
-        AddBadge(user.Questions.Count(), 10, nameof(Badges.Question10), 25, nameof(Badges.Question25));
-        AddBadge(user.Answers.Count(), 10, nameof(Badges.Answer10), 25, nameof(Badges.Answer25));
-        AddBadge(user.Comments.Count(), 25, nameof(Badges.Comment25), 50, nameof(Badges.Comment50));
-        AddBadge(user.CorrectQuizAnswerCount, 25, nameof(Badges.Quiz25), 50, nameof(Badges.Quiz50));
-        return badges;
+        return string.Join(", ", Enum.GetValues(typeof(Badges))
+            .Cast<Badges>()
+            .Where(badge => (user.Badges & badge) == badge));
     }
 
     public async Task<string> LoginAsync(LoginDTO dto)

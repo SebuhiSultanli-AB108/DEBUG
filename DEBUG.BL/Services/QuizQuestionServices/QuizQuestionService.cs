@@ -2,6 +2,7 @@
 using DEBUG.BL.DTOs.QuizQuestionDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
+using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
 
 namespace DEBUG.BL.Services.QuizQuestionServices;
@@ -26,6 +27,13 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
         if (wrightAnswer.Id == givenAnswer.Id)
         {
             user.CorrectQuizAnswerCount++;
+            if (user.CorrectQuizAnswerCount >= 50)
+            {
+                user.Badges |= Badges.Quiz50;
+                user.Badges &= ~Badges.Quiz25;
+            }
+            else if (user.CorrectQuizAnswerCount >= 25)
+                user.Badges |= Badges.Quiz25;
             await _repository.SaveChangesAsync();
             return null;
         }

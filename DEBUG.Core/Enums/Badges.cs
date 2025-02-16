@@ -2,12 +2,12 @@
 
 public enum Badges
 {
-    Question10,
-    Question25,
-    Answer10,
-    Answer25,
-    Comment25,
-    Comment50,
-    Quiz25,
-    Quiz50
+    Question10 = 1,
+    Question25 = 2,
+    Answer10 = 4,
+    Answer25 = 8,
+    Comment25 = 16,
+    Comment50 = 32,
+    Quiz25 = 64,
+    Quiz50 = 128
 }

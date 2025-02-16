@@ -2,6 +2,7 @@
 using DEBUG.BL.DTOs.CommentDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
+using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
 using Microsoft.AspNetCore.Identity;
 
@@ -15,6 +16,16 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
         Comment.AnswerId = answerId;
         Comment.UserId = user.Id;
         await _repository.CreateAsync(Comment);
+
+        user.CommentsCount++;
+        if (user.CommentsCount >= 50)
+        {
+            user.Badges |= Badges.Comment50;
+            user.Badges &= ~Badges.Comment25;
+        }
+        else if (user.CommentsCount >= 25)
+            user.Badges |= Badges.Comment25;
+
         await _repository.SaveChangesAsync();
         return Comment.Id;
     }
