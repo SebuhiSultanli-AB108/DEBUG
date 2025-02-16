@@ -69,6 +69,25 @@ public class UserService(
     {
         await _signInManager.SignOutAsync();
     }
+    public async Task BanAsync(string id, int banDurationWithMinutes)
+    {
+        User? user = await _userManager.FindByIdAsync(id);
+        if (user is null) throw new NotFoundException<User>();
+        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow.AddMinutes(banDurationWithMinutes));
+    }
+    public async Task UnBanAsync(string id)
+    {
+        User? user = await _userManager.FindByIdAsync(id);
+        if (user is null) throw new NotFoundException<User>();
+        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+    }
+    public async Task ResetFailedLoginAttemptsAsync(string id)
+    {
+        User? user = await _userManager.FindByIdAsync(id);
+        if (user is null) throw new NotFoundException<User>();
+        await _userManager.ResetAccessFailedCountAsync(user);
+    }
+
     public async Task SetProfileImageAsync(User user, IFormFile image)
     {
         if (user is null) throw new NotFoundException<User>();

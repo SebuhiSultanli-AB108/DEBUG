@@ -68,6 +68,24 @@ public class UserController(IUserService _service, UserManager<User> _userManage
         await _service.LogoutAsync();
         return Ok();
     }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Ban(string userId, int banDuration)
+    {
+        await _service.BanAsync(userId, banDuration);
+        return Ok();
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Unban(string userId)
+    {
+        await _service.UnBanAsync(userId);
+        return Ok();
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> ResetFailedLoginAttempts(string userId)
+    {
+        await _service.ResetFailedLoginAttemptsAsync(userId);
+        return Ok();
+    }
     //getquestions
     //getanswers
     //getcomments

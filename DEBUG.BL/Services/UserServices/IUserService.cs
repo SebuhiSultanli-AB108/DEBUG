@@ -7,6 +7,9 @@ namespace DEBUG.BL.Services.UserServices;
 public interface IUserService
 {
     Task<UserGetDTO> GetUserById(string id);
+    Task ResetFailedLoginAttemptsAsync(string id);
+    Task UnBanAsync(string id);
+    Task BanAsync(string id, int banDurationWithMinutes);
     Task<IEnumerable<User>> GetAllAsync();
     string GetBadges(User user);
     Task<string> RegisterAsync(RegisterDTO dto);
