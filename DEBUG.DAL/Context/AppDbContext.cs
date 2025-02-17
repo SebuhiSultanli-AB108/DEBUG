@@ -20,6 +20,10 @@ public class AppDbContext : IdentityDbContext<User>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Followers)
+            .WithMany(u => u.Followings)
+            .UsingEntity(j => j.ToTable("UserFollows"));
         base.OnModelCreating(modelBuilder);
     }
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

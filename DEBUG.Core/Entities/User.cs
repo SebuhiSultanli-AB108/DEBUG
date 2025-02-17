@@ -12,8 +12,12 @@ public class User : IdentityUser
     public int QuestionCount { get; set; }
     public int AnswersCount { get; set; }
     public int CommentsCount { get; set; }
+    public int FollowerCount { get; set; }
+    public int FollowingCount { get; set; }
     public Badges Badges { get; set; }
     public IEnumerable<Question> Questions { get; set; }
     public IEnumerable<Answer> Answers { get; set; }
     public IEnumerable<Comment> Comments { get; set; }
+    public ICollection<User> Followers { get; set; }
+    public ICollection<User> Followings { get; set; }
 }

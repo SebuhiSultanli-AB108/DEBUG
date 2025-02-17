@@ -27,6 +27,36 @@ public class UserService(
     IWebHostEnvironment _wwwRoot) : IUserService
 {
     readonly HttpContext _context = accessor.HttpContext;
+    public async Task<IEnumerable<string>> GetFollowersAsync(User user)
+    {
+        return user.Followers.Select(x => x.Id);
+    }
+    public async Task<IEnumerable<string>> GetFollowingAsync(User user)
+    {
+        return user.Followings.Select(x => x.Id);
+    }
+    public async Task FollowAsync(User follower, string followingId)
+    {
+        User? following = await _userManager.FindByIdAsync(followingId);
+        if (following == null) throw new NotFoundException<User>();
+        if (follower.Followings.Contains(following)) throw new AlreadyFollowingException();
+        follower.Followings.Add(following);
+        follower.FollowingCount++;
+        following.Followers.Add(follower);
+        following.FollowerCount++;
+        await _dbContext.SaveChangesAsync();
+    }
+    public async Task UnFollowAsync(User follower, string followingId)
+    {
+        User? following = await _userManager.FindByIdAsync(followingId);
+        if (following == null) throw new NotFoundException<User>();
+        if (follower.Followings.Contains(following)) throw new AlreadyFollowingException();
+        follower.Followings.Remove(following);
+        follower.FollowingCount--;
+        following.Followers.Remove(follower);
+        following.FollowerCount--;
+        await _dbContext.SaveChangesAsync();
+    }
     public async Task<string> RegisterAsync(RegisterDTO dto)
     {
         if (!dto.HasAcceptedTerms)
@@ -87,7 +117,6 @@ public class UserService(
         if (user is null) throw new NotFoundException<User>();
         await _userManager.ResetAccessFailedCountAsync(user);
     }
-
     public async Task SetProfileImageAsync(User user, IFormFile image)
     {
         if (user is null) throw new NotFoundException<User>();

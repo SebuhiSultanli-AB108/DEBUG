@@ -4,6 +4,7 @@ using DEBUG.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEBUG.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250217134904_tryingthingsout")]
+    partial class tryingthingsout
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -379,13 +382,7 @@ namespace DEBUG.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("AnswersCount")
-                        .HasColumnType("int");
-
                     b.Property<int>("Badges")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CommentsCount")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -401,12 +398,6 @@ namespace DEBUG.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<int>("FollowerCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FollowingCount")
-                        .HasColumnType("int");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -438,9 +429,6 @@ namespace DEBUG.DAL.Migrations
                     b.Property<string>("ProfileImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("QuestionCount")
-                        .HasColumnType("int");
 
                     b.Property<string>("Role")
                         .IsRequired()
