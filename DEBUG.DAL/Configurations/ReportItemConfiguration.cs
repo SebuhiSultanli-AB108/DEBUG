@@ -13,6 +13,9 @@ public class ReportItemConfiguration : IEntityTypeConfiguration<ReportItem>
             .IsRequired();
         builder.Property(x => x.ReportedUserId)
             .IsRequired();
+        builder.Property(x => x.Content)
+            .HasMaxLength(256)
+            .IsRequired();
         builder.Property(x => x.QuestionId)
             .IsRequired();
         builder.Property(x => x.AnswerId)

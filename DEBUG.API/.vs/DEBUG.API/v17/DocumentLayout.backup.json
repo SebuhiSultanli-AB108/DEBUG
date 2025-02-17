@@ -3,8 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\Migrations\\20250217125959_addedcontenttoreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A146058-BBC7-498D-AD6D-097D655F05AE}|..\\DEBUG.DAL\\DEBUG.DAL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.dal\\configurations\\reportitemconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3282C823-4E00-4E0B-9CE2-59F5764C5D4C}|DEBUG.API.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0151EE8C-12C9-435E-9555-4026FE2020EA}|..\\DEBUG.Core\\DEBUG.Core.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.core\\entities\\reportitem.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\reportitemdtos\\reportitemcreatedto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18CBC0C-B572-4423-8287-812F2525CF95}|..\\DEBUG.BL\\DEBUG.BL.csproj|c:\\users\\phoenix\\desktop\\debug\\debug.bl\\dtos\\reportitemdtos\\reportitemgetdto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +34,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowFIAAAANAAAAAAAAAA==",
+              "Title": "20250217125959_addedcontenttoreport.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\Migrations\\20250217125959_addedcontenttoreport.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.DAL\\Migrations\\20250217125959_addedcontenttoreport.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\Migrations\\20250217125959_addedcontenttoreport.cs",
+              "RelativeToolTip": "..\\DEBUG.DAL\\Migrations\\20250217125959_addedcontenttoreport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T17:29:11.299Z",
+              "WhenOpened": "2025-02-17T13:00:00.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReportItemConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\Configurations\\ReportItemConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.DAL\\Configurations\\ReportItemConfiguration.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.DAL\\Configurations\\ReportItemConfiguration.cs",
+              "RelativeToolTip": "..\\DEBUG.DAL\\Configurations\\ReportItemConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T12:59:17.784Z",
               "EditorCaption": ""
             },
             {
@@ -36,6 +64,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReportItemGetDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemGetDTO.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemGetDTO.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemGetDTO.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemGetDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T12:57:59.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReportItemCreateDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemCreateDTO.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemCreateDTO.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemCreateDTO.cs",
+              "RelativeToolTip": "..\\DEBUG.BL\\DTOs\\ReportItemDTOs\\ReportItemCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T12:57:53.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReportItem.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.Core\\Entities\\ReportItem.cs",
+              "RelativeDocumentMoniker": "..\\DEBUG.Core\\Entities\\ReportItem.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.Core\\Entities\\ReportItem.cs",
+              "RelativeToolTip": "..\\DEBUG.Core\\Entities\\ReportItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T12:57:37.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Phoenix\\Desktop\\DEBUG\\DEBUG.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T17:29:11.299Z",
+              "EditorCaption": ""
             }
           ]
         }
