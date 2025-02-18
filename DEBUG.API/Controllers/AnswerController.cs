@@ -41,6 +41,19 @@ public class AnswerController(
         var res = await _answerService.CreateAsync(questionId, dto, await _userManager.GetUserAsync(User));
         return Ok(res);
     }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> LikeDislike(int answerId, bool isLiked)
+    {
+        User? user = await _userManager.GetUserAsync(User);
+        if (user == null) throw new NotFoundException<User>();
+        await _answerService.LikeDislikeAsync(user, answerId, isLiked);
+        return Ok();
+    }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetLikesAndDislikes(int answerId)
+    {
+        return Ok(await _answerService.GetLikeDislikeAsync(answerId));
+    }
     [HttpPut("[action]")]
     public async Task<IActionResult> Update(int id, AnswerUpdateDTO dto)
     {

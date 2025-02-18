@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DEBUG.BL.DTOs.AdditionalDTOs;
 using DEBUG.BL.DTOs.QuestionDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
+using DEBUG.BL.Services.AdditionalServices;
 using DEBUG.BL.Services.TagServices;
 using DEBUG.Core.Entities;
 using DEBUG.Core.Enums;
@@ -9,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DEBUG.BL.Services.QuestionServices;
 
-public class QuestionService(IQuestionRepository _repository, ITagService _tagService, UserManager<User> _userManager, IMapper _mapper) : IQuestionService
+public class QuestionService(IQuestionRepository _repository, ITagService _tagService, ILikeDislikeService _likeService, UserManager<User> _userManager, IMapper _mapper) : IQuestionService
 {
     public async Task<int> CreateAsync(int CategoryId, QuestionCreateDTO dto, User user)
     {
@@ -55,6 +57,15 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         if (target == null) throw new NotFoundException<Question>();
         await _repository.HardDeleteAsync(target);
         await _repository.SaveChangesAsync();
+    }
+
+    public async Task LikeDislikeAsync(User user, int questionId, bool isLiked)
+    {
+        await _likeService.LikeDislikeItemAsync(user, questionId, LikedEntityTypes.Question, isLiked);
+    }
+    public async Task<LikeDislikeDTO> GetLikeDislikeAsync(int questionId)
+    {
+        return await _likeService.GetLikeDislikeCountAsync(questionId, LikedEntityTypes.Question);
     }
 
     public async Task SoftDeleteOrRestoreAsync(int id)

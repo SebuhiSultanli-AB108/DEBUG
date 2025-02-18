@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DEBUG.BL.Extensions;
 
-public static class IFormFileExtension
+public static class FormFileExtension
 {
     public static async Task<string> UploadAsync(this IFormFile file, IWebHostEnvironment _wwwRoot, string folder, string? customName = null)
     {

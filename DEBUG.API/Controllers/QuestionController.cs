@@ -1,4 +1,5 @@
 ﻿using DEBUG.BL.DTOs.QuestionDTOs;
+using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Extensions;
 using DEBUG.BL.Services.QuestionServices;
 using DEBUG.Core.Entities;
@@ -26,9 +27,25 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
     [HttpPost("[action]")]
     public async Task<IActionResult> Create(int categoryId, QuestionCreateDTO dto)
     {
-        var res = await _service.CreateAsync(categoryId, dto, await _userManager.GetUserAsync(User));
+        User? user = await _userManager.GetUserAsync(User);
+        if (user == null) throw new NotFoundException<User>();
+        var res = await _service.CreateAsync(categoryId, dto, user);
         return Ok(res);
     }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> LikeDislike(int questionId, bool isLiked)
+    {
+        User? user = await _userManager.GetUserAsync(User);
+        if (user == null) throw new NotFoundException<User>();
+        await _service.LikeDislikeAsync(user, questionId, isLiked);
+        return Ok();
+    }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetLikesAndDislikes(int questionId)
+    {
+        return Ok(await _service.GetLikeDislikeAsync(questionId));
+    }
+
     [HttpPut("[action]")]
     public async Task<IActionResult> Update(int id, QuestionUpdateDTO dto)
     {

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using DEBUG.BL.DTOs.AdditionalDTOs;
 using DEBUG.BL.DTOs.CommentDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
+using DEBUG.BL.Services.AdditionalServices;
 using DEBUG.Core.Entities;
 using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
@@ -8,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DEBUG.BL.Services.CommentServices;
 
-public class CommentService(ICommentRepository _repository, UserManager<User> _userManager, IMapper _mapper) : ICommentService
+public class CommentService(ICommentRepository _repository, UserManager<User> _userManager, ILikeDislikeService _likeService, IMapper _mapper) : ICommentService
 {
     public async Task<int> CreateAsync(int answerId, CommentCreateDTO dto, User user)
     {
@@ -69,5 +71,14 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
         _mapper.Map(dto, comment);
         await _repository.SaveChangesAsync();
         return _mapper.Map<CommentGetDTO>(comment);
+    }
+
+    public async Task LikeDislikeAsync(User user, int commentId, bool isLiked)
+    {
+        await _likeService.LikeDislikeItemAsync(user, commentId, LikedEntityTypes.Comment, isLiked);
+    }
+    public async Task<LikeDislikeDTO> GetLikeDislikeAsync(int commentId)
+    {
+        return await _likeService.GetLikeDislikeCountAsync(commentId, LikedEntityTypes.Comment);
     }
 }

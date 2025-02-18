@@ -16,6 +16,7 @@ public class AppDbContext : IdentityDbContext<User>
     public DbSet<QuizQuestion> QuizQuestions { get; set; }
     public DbSet<QuizAnswer> QuizAnswers { get; set; }
     public DbSet<ReportItem> ReportItems { get; set; }
+    public DbSet<LikeDislike> LikeDislikes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

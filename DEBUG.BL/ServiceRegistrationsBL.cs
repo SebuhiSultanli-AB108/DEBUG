@@ -1,5 +1,6 @@
 ﻿using DEBUG.BL.Exceptions;
 using DEBUG.BL.ExternalServices;
+using DEBUG.BL.Services.AdditionalServices;
 using DEBUG.BL.Services.AnswerServices;
 using DEBUG.BL.Services.CategoryServices;
 using DEBUG.BL.Services.CommentServices;
@@ -30,6 +31,7 @@ public static class ServiceRegistrationsBL
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IQuizQuestionService, QuizQuestionService>();
         services.AddScoped<IReportService, ReportService>();
+        services.AddScoped<ILikeDislikeService, LikeDislikeService>();
         return services;
     }
 

@@ -31,6 +31,19 @@ public class CommentController(IAnswerService _answerService, ICommentService _c
         var res = await _commentService.CreateAsync(answerId, dto, await _userManager.GetUserAsync(User));
         return Ok(res);
     }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> LikeDislike(int commentId, bool isLiked)
+    {
+        User? user = await _userManager.GetUserAsync(User);
+        if (user == null) throw new NotFoundException<User>();
+        await _commentService.LikeDislikeAsync(user, commentId, isLiked);
+        return Ok();
+    }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetLikesAndDislikes(int commentId)
+    {
+        return Ok(await _commentService.GetLikeDislikeAsync(commentId));
+    }
     [HttpPut("[action]")]
     public async Task<IActionResult> Update(int id, CommentUpdateDTO dto)
     {
