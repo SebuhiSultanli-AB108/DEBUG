@@ -16,8 +16,8 @@ public interface IUserService
     Task<string> LoginAsync(LoginDTO dto);
     Task LogoutAsync();
     Task SetProfileImageAsync(User user, IFormFile image);
-    Task<IEnumerable<string>> GetFollowersAsync(User user);
-    Task<IEnumerable<string>> GetFollowingAsync(User user);
+    IEnumerable<string> GetFollowers(User user);
+    IEnumerable<string> GetFollowing(User user);
     Task FollowAsync(User follower, string followingId);
     Task UnFollowAsync(User follower, string followingId);
 }

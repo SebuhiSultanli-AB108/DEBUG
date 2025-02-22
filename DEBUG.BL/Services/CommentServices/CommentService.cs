@@ -32,13 +32,9 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
         return Comment.Id;
     }
     public async Task<IEnumerable<CommentGetDTO>> GetAllByAnswerIdAsync(int answerId)
-    {
-        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.AnswerId == answerId, "User"));
-    }
+        => _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.AnswerId == answerId, "User"));
     public async Task<IEnumerable<CommentGetDTO>> GetAllAsync()
-    {
-        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, "User"));
-    }
+        => _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, "User"));
     public async Task<CommentGetDTO> GetByIdAsync(int id)
     {
         Comment? comment = await _repository.GetByIdAsync(id, x => x.IsDeleted == false, "User");
@@ -74,11 +70,7 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
     }
 
     public async Task LikeDislikeAsync(User user, int commentId, bool isLiked)
-    {
-        await _likeService.LikeDislikeItemAsync(user, commentId, LikedEntityTypes.Comment, isLiked);
-    }
+        => await _likeService.LikeDislikeItemAsync(user, commentId, LikedEntityTypes.Comment, isLiked);
     public async Task<LikeDislikeDTO> GetLikeDislikeAsync(int commentId)
-    {
-        return await _likeService.GetLikeDislikeCountAsync(commentId, LikedEntityTypes.Comment);
-    }
+        => await _likeService.GetLikeDislikeCountAsync(commentId, LikedEntityTypes.Comment);
 }

@@ -14,6 +14,8 @@ using DEBUG.BL.Helpers.EmailTemplates;
 using DEBUG.BL.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using DEBUG.DAL.Context;
+using Microsoft.Extensions.Options;
+using DEBUG.BL.DTOs.OptionsDTOs;
 
 namespace DEBUG.BL.Services.UserServices;
 
@@ -24,20 +26,19 @@ public class UserService(
     IJWTTokenHandler _tokenHandler,
     IMapper _mapper,
     IHttpContextAccessor accessor,
-    IWebHostEnvironment _wwwRoot) : IUserService
+    IWebHostEnvironment _wwwRoot,
+    IOptions<SmtpOption> _smtpOption) : IUserService
 {
     readonly HttpContext _context = accessor.HttpContext;
-    public async Task<IEnumerable<string>> GetFollowersAsync(User user)
-    {
-        return user.Followers.Select(x => x.Id);
-    }
-    public async Task<IEnumerable<string>> GetFollowingAsync(User user)
-    {
-        return user.Followings.Select(x => x.Id);
-    }
+    public IEnumerable<string> GetFollowers(User user)
+        => user.Followers.Select(x => x.Id);
+
+    public IEnumerable<string> GetFollowing(User user)
+        => user.Followings.Select(x => x.Id);
     public async Task FollowAsync(User follower, string followingId)
     {
-        User? following = await _userManager.FindByIdAsync(followingId);
+        User? following = await _userManager.Users.Include(x => x.Followers).FirstOrDefaultAsync(x => x.Id == followingId);
+        if (follower.Id == followingId) throw new CantFollowSelfException();
         if (following == null) throw new NotFoundException<User>();
         if (follower.Followings.Contains(following)) throw new AlreadyFollowingException();
         follower.Followings.Add(following);
@@ -48,9 +49,8 @@ public class UserService(
     }
     public async Task UnFollowAsync(User follower, string followingId)
     {
-        User? following = await _userManager.FindByIdAsync(followingId);
+        User? following = await _userManager.Users.Include(x => x.Followers).FirstOrDefaultAsync(x => x.Id == followingId);
         if (following == null) throw new NotFoundException<User>();
-        if (follower.Followings.Contains(following)) throw new AlreadyFollowingException();
         follower.Followings.Remove(following);
         follower.FollowingCount--;
         following.Followers.Remove(follower);
@@ -65,13 +65,12 @@ public class UserService(
         newUser.Role = Roles.User.ToString();
         await _userManager.CreateAsync(newUser, dto.Password);
         User? user = await _userManager.FindByEmailAsync(dto.Email);
-        SendEmail(await _userManager.GenerateEmailConfirmationTokenAsync(user), user.Email, user.UserName);
+        if (user == null) throw new NotFoundException<User>();
+        SendEmail(await _userManager.GenerateEmailConfirmationTokenAsync(user), user.Email!, user.UserName!);
         return user.Id;
     }
     public async Task<IEnumerable<User>> GetAllAsync()
-    {
-        return await _userManager.Users.ToListAsync();
-    }
+        => await _userManager.Users.ToListAsync();
     public async Task<UserGetDTO> GetUserById(string id)
     {
         User? user = await _userManager.FindByIdAsync(id);
@@ -88,28 +87,26 @@ public class UserService(
     {
         User? user = await _userManager.FindByEmailAsync(dto.Email);
         if (user is null) throw new NotFoundException<User>();
-
         var res = await _signInManager.PasswordSignInAsync(user!, dto.Password, true, true);
         var passwordHasher = new PasswordHasher<object>();
-        if (passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password) == PasswordVerificationResult.Failed)
+        if (passwordHasher.VerifyHashedPassword(user, user.PasswordHash!, dto.Password) == PasswordVerificationResult.Failed)
             throw new NotFoundException<User>();
         return _tokenHandler.CreateToken(user, 24);
     }
     public async Task LogoutAsync()
-    {
-        await _signInManager.SignOutAsync();
-    }
+        => await _signInManager.SignOutAsync();
+
     public async Task BanAsync(string id, int banDurationWithMinutes)
     {
         User? user = await _userManager.FindByIdAsync(id);
         if (user is null) throw new NotFoundException<User>();
-        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow.AddMinutes(banDurationWithMinutes));
+        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now.AddMinutes(banDurationWithMinutes));
     }
     public async Task UnBanAsync(string id)
     {
         User? user = await _userManager.FindByIdAsync(id);
         if (user is null) throw new NotFoundException<User>();
-        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+        await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now);
     }
     public async Task ResetFailedLoginAttemptsAsync(string id)
     {
@@ -126,12 +123,12 @@ public class UserService(
     private void SendEmail(string token, string email, string username)
     {
         using SmtpClient client = new SmtpClient();
-        client.Host = "smtp.gmail.com";
-        client.Port = 587;
+        client.Host = _smtpOption.Value.Host;
+        client.Port = _smtpOption.Value.Port;
         client.EnableSsl = true;
         client.UseDefaultCredentials = false;
-        client.Credentials = new NetworkCredential("debug.app.noreply@gmail.com", "qlfm vdmt dbka ngnl");
-        MailAddress from = new MailAddress("debug.app.noreply@gmail.com", "DEBUG");
+        client.Credentials = new NetworkCredential(_smtpOption.Value.Email, _smtpOption.Value.SmtpKey);
+        MailAddress from = new MailAddress(_smtpOption.Value.Email, _smtpOption.Value.Name);
         MailAddress to = new MailAddress(email);
         MailMessage message = new MailMessage(from, to);
         message.Subject = "<p>Verify your email address</p>";
@@ -143,5 +140,4 @@ public class UserService(
         message.IsBodyHtml = true;
         client.Send(message);
     }
-
 }

@@ -10,10 +10,10 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
     {
         builder.HasIndex(x => x.Id);
         builder.Property(x => x.Title)
-            .HasMaxLength(128)
+            .HasMaxLength(256)
             .IsRequired();
         builder.Property(x => x.Content)
-            .HasMaxLength(4096)
+            .HasMaxLength(8192)
             .IsRequired();
         builder.HasOne(x => x.User)
             .WithMany(x => x.Questions)

@@ -21,6 +21,11 @@ public class CommentController(IAnswerService _answerService, ICommentService _c
         return Ok(await _commentService.GetAllByAnswerIdAsync(answerId));
     }
     [HttpGet("[action]")]
+    public async Task<IActionResult> GetByUserIdAsync(string id)
+    {
+        return Ok(await _commentService.GetByUserIdAsync(id));
+    }
+    [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await _commentService.GetByIdAsync(id));

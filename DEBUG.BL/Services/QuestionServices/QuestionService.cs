@@ -8,6 +8,7 @@ using DEBUG.Core.Entities;
 using DEBUG.Core.Enums;
 using DEBUG.Core.RepositoryInstances;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DEBUG.BL.Services.QuestionServices;
 
@@ -18,7 +19,7 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         Question question = _mapper.Map<Question>(dto);
         question.UserId = user.Id;
         question.CategoryId = CategoryId;
-        question.Tags = await _tagService.GetRangeByIdsAsync(dto.TagIds); ;
+        question.Tags = await _tagService.GetRangeByIdsAsync(dto.TagIds);
         await _repository.CreateAsync(question);
 
         user.QuestionCount++;
@@ -35,9 +36,7 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
     }
 
     public async Task<IEnumerable<QuestionGetDTO>> GetAllAsync()
-    {
-        return _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, ["User", "Category", "Tags"]));
-    }
+        => _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, ["User", "Category", "Tags"]));
 
     public async Task<QuestionGetDTO> GetByIdAsync(int id)
     {
@@ -60,13 +59,9 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
     }
 
     public async Task LikeDislikeAsync(User user, int questionId, bool isLiked)
-    {
-        await _likeService.LikeDislikeItemAsync(user, questionId, LikedEntityTypes.Question, isLiked);
-    }
+        => await _likeService.LikeDislikeItemAsync(user, questionId, LikedEntityTypes.Question, isLiked);
     public async Task<LikeDislikeDTO> GetLikeDislikeAsync(int questionId)
-    {
-        return await _likeService.GetLikeDislikeCountAsync(questionId, LikedEntityTypes.Question);
-    }
+        => await _likeService.GetLikeDislikeCountAsync(questionId, LikedEntityTypes.Question);
 
     public async Task SoftDeleteOrRestoreAsync(int id)
     {
@@ -83,5 +78,12 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         _mapper.Map(dto, question);
         await _repository.SaveChangesAsync();
         return _mapper.Map<QuestionGetDTO>(question);
+    }
+
+    public async Task<IEnumerable<QuestionGetDTO>> GetByCategoryAndTagsAsync(int categoryId, int[] tagIds)
+    {
+        var table = _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.CategoryId == categoryId, ["User", "Category", "Tags"]));
+        if (tagIds.IsNullOrEmpty()) return table;
+        return table.Where(x => x.Tags.Any(t => tagIds.Contains(t.Id)));
     }
 }

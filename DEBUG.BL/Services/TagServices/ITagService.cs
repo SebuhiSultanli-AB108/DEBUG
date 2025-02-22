@@ -11,5 +11,5 @@ public interface ITagService
     Task SoftDeleteOrRestoreAsync(int id);
     Task<IEnumerable<TagGetDTO>> GetAllAsync();
     Task<TagGetDTO> GetByIdAsync(int id);
-    Task<IEnumerable<Tag>> GetRangeByIdsAsync(int[] ids);
+    Task<IEnumerable<Tag>?> GetRangeByIdsAsync(int[] ids);
 }

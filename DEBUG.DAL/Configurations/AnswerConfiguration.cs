@@ -12,7 +12,6 @@ public class AnswerConfiguration : IEntityTypeConfiguration<Answer>
         builder.Property(x => x.Content)
             .HasMaxLength(4096)
             .IsRequired();
-        //Image???
         builder.HasOne(x => x.Question)
             .WithMany(x => x.Answers)
             .HasForeignKey(x => x.QuestionId)

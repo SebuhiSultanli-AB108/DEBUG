@@ -10,14 +10,20 @@ public class LikeDislikeService(AppDbContext _context) : ILikeDislikeService
 {
     public async Task LikeDislikeItemAsync(User user, int itemId, LikedEntityTypes entityType, bool isLiked)
     {
-        LikeDislike likeDislike = new()
+        LikeDislike? like = await _context.LikeDislikes.Where(x => x.User.Id == user.Id && x.ItemId == itemId).FirstOrDefaultAsync();
+        if (like != null)
+            like.IsLiked = isLiked;
+        else
         {
-            User = user,
-            ItemId = itemId,
-            IsLiked = isLiked,
-            Type = entityType
-        };
-        await _context.AddAsync(likeDislike);
+            LikeDislike likeDislike = new()
+            {
+                User = user,
+                ItemId = itemId,
+                IsLiked = isLiked,
+                Type = entityType
+            };
+            await _context.AddAsync(likeDislike);
+        }
         await _context.SaveChangesAsync();
     }
     public async Task<LikeDislikeDTO> GetLikeDislikeCountAsync(int itemId, LikedEntityTypes entityType)

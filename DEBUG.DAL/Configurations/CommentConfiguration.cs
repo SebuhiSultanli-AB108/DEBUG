@@ -10,7 +10,7 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
     {
         builder.HasIndex(x => x.Id);
         builder.Property(x => x.CommentText)
-            .HasMaxLength(256)
+            .HasMaxLength(512)
             .IsRequired();
         builder.HasOne(x => x.Answer)
             .WithMany(x => x.Comments)

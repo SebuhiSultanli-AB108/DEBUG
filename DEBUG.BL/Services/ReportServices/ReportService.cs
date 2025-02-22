@@ -3,15 +3,15 @@ using DEBUG.BL.DTOs.ReportItemDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
 using DEBUG.Core.RepositoryInstances;
-using Microsoft.AspNetCore.Identity;
 
 namespace DEBUG.BL.Services.ReportServices;
 
-public class ReportService(IReportItemRepository _repository, UserManager<User> _userManager, IMapper _mapper) : IReportService
+public class ReportService(IReportItemRepository _repository, IMapper _mapper) : IReportService
 {
-    public async Task<int> CreateAsync(ReportItemCreateDTO dto)
+    public async Task<int> CreateAsync(ReportItemCreateDTO dto, User user)
     {
         ReportItem report = _mapper.Map<ReportItem>(dto);
+        report.ReporterUserId = user.Id;
         await _repository.CreateAsync(report);
         await _repository.SaveChangesAsync();
         return report.Id;

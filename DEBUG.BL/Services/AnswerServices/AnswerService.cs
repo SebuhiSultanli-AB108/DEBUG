@@ -32,13 +32,7 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
         return Answer.Id;
     }
     public async Task<IEnumerable<AnswerGetDTO>> GetAllByQuestionIdAsync(int questionId)
-    {
-        return _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.QuestionId == questionId, "User"));
-    }
-    //public IEnumerable<AnswerGetDTO> GetAll()
-    //{
-    //    return _mapper.Map<IEnumerable<AnswerGetDTO>>(_repository.GetWhere(x => x.IsDeleted == false, "User"));
-    //}
+        => _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.QuestionId == questionId, "User"));
     public async Task<AnswerGetDTO> GetByIdAsync(int id)
     {
         Answer? answer = await _repository.GetByIdAsync(id, x => x.IsDeleted == false, "User");
@@ -59,13 +53,9 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
     }
 
     public async Task LikeDislikeAsync(User user, int answerId, bool isLiked)
-    {
-        await _likeService.LikeDislikeItemAsync(user, answerId, LikedEntityTypes.Answer, isLiked);
-    }
+        => await _likeService.LikeDislikeItemAsync(user, answerId, LikedEntityTypes.Answer, isLiked);
     public async Task<LikeDislikeDTO> GetLikeDislikeAsync(int answerId)
-    {
-        return await _likeService.GetLikeDislikeCountAsync(answerId, LikedEntityTypes.Answer);
-    }
+        => await _likeService.GetLikeDislikeCountAsync(answerId, LikedEntityTypes.Answer);
     public async Task SoftDeleteOrRestoreAsync(int id)
     {
         Answer? target = await _repository.GetByIdAsync(id);

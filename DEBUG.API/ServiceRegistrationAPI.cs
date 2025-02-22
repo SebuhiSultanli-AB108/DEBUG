@@ -10,6 +10,11 @@ public static class ServiceRegistrationAPI
         services.Configure<JWTOption>(_configuration.GetSection(JWTOption.Jwt));
         return services;
     }
+    public static IServiceCollection AddSmtpOptions(this IServiceCollection services, IConfiguration _configuration)
+    {
+        services.Configure<SmtpOption>(_configuration.GetSection(SmtpOption.Smtp));
+        return services;
+    }
     public static IServiceCollection ConfigureSwaggerAuthentication(this IServiceCollection services)
     {
 

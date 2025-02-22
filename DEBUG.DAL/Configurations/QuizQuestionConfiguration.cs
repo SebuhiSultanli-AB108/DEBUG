@@ -10,7 +10,7 @@ public class QuizQuestionConfiguration : IEntityTypeConfiguration<QuizQuestion>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Content)
-            .HasMaxLength(2048)
+            .HasMaxLength(1024)
             .IsRequired();
         builder.HasOne(x => x.Tag)
             .WithMany(x => x.QuizQuestions)

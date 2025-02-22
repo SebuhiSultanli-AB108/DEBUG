@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using DEBUG.BL.DTOs.AccountDTOs;
+﻿using DEBUG.BL.DTOs.AccountDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.UserServices;
 using DEBUG.Core.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +10,7 @@ namespace DEBUG.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserController(IUserService _service, UserManager<User> _userManager, IMapper _mapper) : ControllerBase
+public class UserController(IUserService _service, UserManager<User> _userManager) : ControllerBase
 {
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(string id)
@@ -28,6 +26,7 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     public async Task<IActionResult> Follow(string followUserId)
     {
         User? user = await _userManager.GetUserAsync(User);
+        if (user == null) throw new NotFoundException<User>();
         User currentUser = await _getUserByIdAsync(user.Id);
         await _service.FollowAsync(currentUser, followUserId);
         return Ok();
@@ -44,8 +43,8 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     public async Task<IActionResult> FollowersAndFollowingsIds(string userId)
     {
         User user = await _getUserByIdAsync(userId);
-        IEnumerable<string> followers = await _service.GetFollowersAsync(user);
-        IEnumerable<string> following = await _service.GetFollowingAsync(user);
+        IEnumerable<string> followers = _service.GetFollowers(user);
+        IEnumerable<string> following = _service.GetFollowing(user);
         return Ok(new { Followers = followers, Followings = following });
     }
 
@@ -58,13 +57,6 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     public async Task<IActionResult> Login(LoginDTO dto)
     {
         return Ok(await _service.LoginAsync(dto));
-    }
-    [HttpPost("[action]")]
-    [Authorize]
-    public async Task<IActionResult> Logout()
-    {
-        await _service.LogoutAsync();
-        return Ok();
     }
     [HttpPost("[action]")]
     public async Task<IActionResult> SetProfileImage(IFormFile image)
@@ -121,7 +113,4 @@ public class UserController(IUserService _service, UserManager<User> _userManage
         if (user == null) throw new NotFoundException<User>();
         return user;
     }
-    //getquestions
-    //getanswers
-    //getcomments
 }

@@ -25,11 +25,11 @@ public class AnswerController(
         if (await _questionService.GetByIdAsync(questionId) == null) throw new NotFoundException<Question>();
         return Ok(await _answerService.GetAllByQuestionIdAsync(questionId));
     }
-    //[HttpGet("[action]")]
-    //public IActionResult GetAll()
-    //{
-    //    return Ok(_answerService.GetAll());
-    //}
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetByUserIdAsync(string id)
+    {
+        return Ok(await _answerService.GetByUserIdAsync(id));
+    }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)
     {

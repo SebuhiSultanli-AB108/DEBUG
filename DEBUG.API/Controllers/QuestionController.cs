@@ -20,6 +20,16 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
         return Ok(await _service.GetAllAsync());
     }
     [HttpGet("[action]")]
+    public async Task<IActionResult> GetByUserIdAsync(string id)
+    {
+        return Ok(await _service.GetByUserIdAsync(id));
+    }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetByCategoryAndTagsAsync(int categoryId, [FromQuery] int[] tagIds)
+    {
+        return Ok(await _service.GetByCategoryAndTagsAsync(categoryId, tagIds));
+    }
+    [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await _service.GetByIdAsync(id));

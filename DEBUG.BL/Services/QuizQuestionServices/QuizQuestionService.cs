@@ -22,9 +22,9 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
         QuizQuestion? question = await _repository.GetByIdAsync(questionId, null, "QuizAnswers");
         if (question == null) throw new NotFoundException<QuizQuestion>();
         QuizAnswer? wrightAnswer = question.QuizAnswers.Where(x => x.IsCorrect == true).FirstOrDefault();
-        QuizAnswer? givenAnswer = question.QuizAnswers.Where(x => x.Id == answerId).FirstOrDefault();
-        if (givenAnswer == null) throw new NotFoundException<QuizAnswer>();
-        if (wrightAnswer.Id == givenAnswer.Id)
+        if (wrightAnswer == null) throw new NotFoundException<QuizAnswer>();
+
+        if (wrightAnswer.Id == answerId)
         {
             user.CorrectQuizAnswerCount++;
             if (user.CorrectQuizAnswerCount >= 50)

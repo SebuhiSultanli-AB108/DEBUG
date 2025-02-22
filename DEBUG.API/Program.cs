@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddJwtOptions(builder.Configuration);
+builder.Services.AddSmtpOptions(builder.Configuration);
 builder.Services.ConfigureSwaggerAuthentication();
 builder.Services.AddRepositories();
 builder.Services.AddServices();
@@ -20,14 +21,12 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
     opt.User.RequireUniqueEmail = true;
-    opt.SignIn.RequireConfirmedEmail = false;//TODO: Change this shit!
-
+    opt.SignIn.RequireConfirmedEmail = true;
     opt.Password.RequiredUniqueChars = 3;
     opt.Password.RequiredLength = 8;
     opt.Password.RequireNonAlphanumeric = true;
     opt.Password.RequireUppercase = true;
     opt.Password.RequireLowercase = true;
-
     opt.Lockout.AllowedForNewUsers = true;
     opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     opt.Lockout.MaxFailedAccessAttempts = 3;

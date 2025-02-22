@@ -10,19 +10,15 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
 {
     protected DbSet<T> Table = _context.Set<T>();
     public async Task CreateAsync(T entity)
-    {
-        entity.CreatedAt = DateTime.Now;
-        await Table.AddAsync(entity);
-    }
+        => await Table.AddAsync(entity);
+
     public async Task RangeCreateAsync(IEnumerable<T> entities)
     {
         foreach (var entity in entities)
-        {
-            entity.CreatedAt = DateTime.Now;
             await Table.AddAsync(entity);
-        }
     }
-    public async Task HardDeleteAsync(T entity) => await Task.Run(() => Table.Remove(entity));
+    public async Task HardDeleteAsync(T entity)
+        => await Task.Run(() => Table.Remove(entity));
     public void SoftDeleteAndRestore(T entity)
     {
         entity.IsDeleted = entity.IsDeleted ? false : true;
@@ -53,14 +49,13 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
         var query = Table.AsQueryable();
         query = _addWhere(query, where);
         query = _addIncludes(query, includes);
-        List<T> list = new List<T>();
+        List<T> list = new();
         foreach (var id in ids)
-        {
             list.Add(await query.FirstOrDefaultAsync(x => x.Id == id));
-        }
         return list;
     }
-    public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+    public async Task SaveChangesAsync()
+        => await _context.SaveChangesAsync();
     IQueryable<T> _addWhere(IQueryable<T> query, Expression<Func<T, bool>>? where = null)
     {
         if (where != null)

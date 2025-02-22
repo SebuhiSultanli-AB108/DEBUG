@@ -13,6 +13,7 @@ public interface IQuestionService
     Task LikeDislikeAsync(User user, int questionId, bool isLiked);
     Task<LikeDislikeDTO> GetLikeDislikeAsync(int questionId);
     Task<IEnumerable<QuestionGetDTO>> GetAllAsync();
+    Task<IEnumerable<QuestionGetDTO>> GetByCategoryAndTagsAsync(int categoryId, int[] tagIds);
     Task<IEnumerable<QuestionGetDTO>> GetByUserIdAsync(string id);
     Task<QuestionGetDTO> GetByIdAsync(int id);
 }
