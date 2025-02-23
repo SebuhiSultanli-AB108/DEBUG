@@ -30,12 +30,14 @@ public class CommentController(IAnswerService _answerService, ICommentService _c
     {
         return Ok(await _commentService.GetByIdAsync(id));
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Create(CommentCreateDTO dto, int answerId)
     {
         var res = await _commentService.CreateAsync(answerId, dto, await _userManager.GetUserAsync(User));
         return Ok(res);
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> LikeDislike(int commentId, bool isLiked)
     {
@@ -60,6 +62,7 @@ public class CommentController(IAnswerService _answerService, ICommentService _c
         await _commentService.SoftDeleteOrRestoreAsync(id);
         return Ok();
     }
+    [Authorize(Roles = "Moderator,Admin")]
     [HttpDelete("[action]")]
     public async Task<IActionResult> HardDelete(int id)
     {

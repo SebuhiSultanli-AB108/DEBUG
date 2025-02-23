@@ -29,7 +29,7 @@ public static class ServiceRegistrationsDAL
     {
         services.AddDbContext<AppDbContext>(opt =>
         {
-            opt.UseSqlServer(configuration.GetConnectionString("Phoenix"));
+            opt.UseSqlServer(configuration.GetConnectionString("Remote"));
         });
         return services;
     }

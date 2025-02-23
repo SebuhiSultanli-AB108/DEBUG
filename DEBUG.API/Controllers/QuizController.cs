@@ -2,6 +2,7 @@
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.QuizQuestionServices;
 using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,16 +12,19 @@ namespace DEBUG.API.Controllers
     [ApiController]
     public class QuizController(IQuizQuestionService _service, UserManager<User> _userManager) : ControllerBase
     {
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAsync()
         {
             return Ok(await _service.GetAllAsync());
         }
+        [Authorize(Roles = "User")]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetLevelAsync(int difficulty)
         {
             return Ok(await _service.Get5RandomQuestionsAsync(difficulty));
         }
+        [Authorize(Roles = "User")]
         [HttpPost("[action]")]
         public async Task<IActionResult> VerifyQuizAnswers(int questionId, int answerId)
         {
@@ -28,34 +32,40 @@ namespace DEBUG.API.Controllers
             if (user == null) throw new NotFoundException<User>();
             return Ok(await _service.VerifyQuizAnswersAsync(questionId, answerId, user));
         }
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await _service.GetByIdAsync(id));
         }
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpPost("[action]")]
         public async Task<IActionResult> Create(QuizQuestionCreateDTO dto)
         {
             var res = await _service.CreateAsync(dto);
             return Ok(res);
         }
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpPost("[action]")]
         public async Task<IActionResult> RangedCreate(IEnumerable<QuizQuestionCreateDTO> dtos)
         {
             await _service.RangedCreateAsync(dtos);
             return Ok();
         }
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpPut("[action]")]
         public async Task<IActionResult> Update(int id, QuizQuestionUpdateDTO dto)
         {
             return Ok(await _service.UpdateAsync(id, dto));
         }
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpPut("[action]")]
         public async Task<IActionResult> SoftDeleteOrRestore(int id)
         {
             await _service.SoftDeleteOrRestoreAsync(id);
             return Ok();
         }
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpDelete("[action]")]
         public async Task<IActionResult> HardDelete(int id)
         {

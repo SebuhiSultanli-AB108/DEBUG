@@ -4,9 +4,9 @@ namespace DEBUG.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TestController : ControllerBase
+public class MeetController : ControllerBase
 {
-    [HttpGet("create-room")]
+    [HttpGet("[action]")]
     public IActionResult CreateRoom()
     {
         string Url = $"https://meet.jit.si/{Guid.NewGuid()}";

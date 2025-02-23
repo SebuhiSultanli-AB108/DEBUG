@@ -2,6 +2,7 @@
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.UserServices;
 using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     {
         return Ok(await _service.GetAllAsync());
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Follow(string followUserId)
     {
@@ -31,6 +33,7 @@ public class UserController(IUserService _service, UserManager<User> _userManage
         await _service.FollowAsync(currentUser, followUserId);
         return Ok();
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> UnFollow(string unFollowUserId)
     {
@@ -47,7 +50,6 @@ public class UserController(IUserService _service, UserManager<User> _userManage
         IEnumerable<string> following = _service.GetFollowing(user);
         return Ok(new { Followers = followers, Followings = following });
     }
-
     [HttpPost("[action]")]
     public async Task<IActionResult> Register(RegisterDTO dto)
     {
@@ -58,6 +60,7 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     {
         return Ok(await _service.LoginAsync(dto));
     }
+    [Authorize]
     [HttpPost("[action]")]
     public async Task<IActionResult> SetProfileImage(IFormFile image)
     {
@@ -86,18 +89,21 @@ public class UserController(IUserService _service, UserManager<User> _userManage
         else
             return BadRequest();
     }
+    [Authorize(Roles = "Moderator,Admin")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Ban(string userId, int banDuration)
     {
         await _service.BanAsync(userId, banDuration);
         return Ok();
     }
+    [Authorize(Roles = "Moderator,Admin")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Unban(string userId)
     {
         await _service.UnBanAsync(userId);
         return Ok();
     }
+    [Authorize(Roles = "Moderator,Admin")]
     [HttpPost("[action]")]
     public async Task<IActionResult> ResetFailedLoginAttempts(string userId)
     {

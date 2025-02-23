@@ -35,12 +35,14 @@ public class AnswerController(
     {
         return Ok(await _answerService.GetByIdAsync(id));
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Create(AnswerCreateDTO dto, int questionId)
     {
         var res = await _answerService.CreateAsync(questionId, dto, await _userManager.GetUserAsync(User));
         return Ok(res);
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> LikeDislike(int answerId, bool isLiked)
     {
@@ -65,6 +67,7 @@ public class AnswerController(
         await _answerService.SoftDeleteOrRestoreAsync(id);
         return Ok();
     }
+    [Authorize(Roles = "Moderator,Admin")]
     [HttpDelete("[action]")]
     public async Task<IActionResult> HardDelete(int id)
     {

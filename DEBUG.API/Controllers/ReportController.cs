@@ -2,6 +2,7 @@
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.ReportServices;
 using DEBUG.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,16 +12,19 @@ namespace DEBUG.API.Controllers;
 [ApiController]
 public class ReportController(IReportService _service, UserManager<User> _userManager) : ControllerBase
 {
+    [Authorize(Roles = "Admin")]
     [HttpGet("[action]")]
     public async Task<IActionResult> GetAllAsync()
     {
         return Ok(await _service.GetAllAsync());
     }
+    [Authorize(Roles = "Admin")]
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await _service.GetByIdAsync(id));
     }
+    [Authorize(Roles = "Moderator,User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Create(ReportItemCreateDTO dto)
     {
@@ -29,6 +33,7 @@ public class ReportController(IReportService _service, UserManager<User> _userMa
         var res = await _service.CreateAsync(dto, user);
         return Ok(res);
     }
+    [Authorize(Roles = "Admin")]
     [HttpDelete("[action]")]
     public async Task<IActionResult> HardDelete(int id)
     {

@@ -34,6 +34,7 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
     {
         return Ok(await _service.GetByIdAsync(id));
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> Create(int categoryId, QuestionCreateDTO dto)
     {
@@ -42,6 +43,7 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
         var res = await _service.CreateAsync(categoryId, dto, user);
         return Ok(res);
     }
+    [Authorize(Roles = "User")]
     [HttpPost("[action]")]
     public async Task<IActionResult> LikeDislike(int questionId, bool isLiked)
     {
@@ -67,6 +69,7 @@ public class QuestionController(IQuestionService _service, UserManager<User> _us
         await _service.SoftDeleteOrRestoreAsync(id);
         return Ok();
     }
+    [Authorize(Roles = "Moderator,Admin")]
     [HttpDelete("[action]")]
     public async Task<IActionResult> HardDelete(int id)
     {
