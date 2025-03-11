@@ -14,9 +14,9 @@ public class ReportController(IReportService _service, UserManager<User> _userMa
 {
     [Authorize(Roles = "Admin")]
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync(short pageNo, short take)
     {
-        return Ok(await _service.GetAllAsync());
+        return Ok(await _service.GetAllAsync(pageNo, take));
     }
     [Authorize(Roles = "Admin")]
     [HttpGet("[action]")]

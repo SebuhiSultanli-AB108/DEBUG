@@ -24,15 +24,15 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
         entity.IsDeleted = entity.IsDeleted ? false : true;
         entity.DeletedAt = DateTime.Now;
     }
-    public async Task<IEnumerable<T>> GetAllAsync(params string[]? includes)
+    public async Task<IEnumerable<T>> GetAllAsync(short pageNo, short take, params string[]? includes)
     {
-        var query = Table.AsQueryable();
+        var query = Table.AsQueryable().Skip((pageNo - 1) * take).Take(take);
         query = _addIncludes(query, includes);
         return await query.ToListAsync();
     }
-    public async Task<IEnumerable<T>> GetWhereAsync(Expression<Func<T, bool>> expression, params string[]? includes)
+    public async Task<IEnumerable<T>> GetWhereAsync(short pageNo, short take, Expression<Func<T, bool>> expression, params string[]? includes)
     {
-        var query = Table.AsQueryable();
+        var query = Table.AsQueryable().Skip((pageNo - 1) * take).Take(take);
         query = _addIncludes(query, includes);
         query = _addWhere(query, expression);
         return await query.ToListAsync();

@@ -8,6 +8,6 @@ public interface ICategoryService
     Task<CategoryGetDTO> UpdateAsync(int id, CategoryUpdateDTO dto);
     Task HardDeleteAsync(int id);
     Task SoftDeleteOrRestoreAsync(int id);
-    Task<IEnumerable<CategoryGetDTO>> GetAllAsync();
+    Task<IEnumerable<CategoryGetDTO>> GetAllAsync(short pageNo, short take);
     Task<CategoryGetDTO> GetByIdAsync(int id);
 }

@@ -12,8 +12,8 @@ public interface IQuestionService
     Task SoftDeleteOrRestoreAsync(int id);
     Task LikeDislikeAsync(User user, int questionId, bool isLiked);
     Task<LikeDislikeDTO> GetLikeDislikeAsync(int questionId);
-    Task<IEnumerable<QuestionGetDTO>> GetAllAsync();
-    Task<IEnumerable<QuestionGetDTO>> GetByCategoryAndTagsAsync(int categoryId, int[] tagIds);
-    Task<IEnumerable<QuestionGetDTO>> GetByUserIdAsync(string id);
+    Task<IEnumerable<QuestionGetDTO>> GetAllAsync(short pageNo, short take);
+    Task<IEnumerable<QuestionGetDTO>> GetByCategoryAndTagsAsync(short pageNo, short take, int categoryId, int[] tagIds);
+    Task<IEnumerable<QuestionGetDTO>> GetByUserIdAsync(short pageNo, short take, string id);
     Task<QuestionGetDTO> GetByIdAsync(int id);
 }

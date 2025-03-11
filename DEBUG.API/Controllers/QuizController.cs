@@ -14,15 +14,15 @@ namespace DEBUG.API.Controllers
     {
         [Authorize(Roles = "Moderator,Admin")]
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync(short pageNo, short take)
         {
-            return Ok(await _service.GetAllAsync());
+            return Ok(await _service.GetAllAsync(pageNo, take));
         }
         [Authorize(Roles = "User")]
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetLevelAsync(int difficulty)
+        public async Task<IActionResult> GetLevelAsync(byte difficulty, short take)
         {
-            return Ok(await _service.Get5RandomQuestionsAsync(difficulty));
+            return Ok(await _service.GetRandomQuestionsAsync(difficulty, take));
         }
         [Authorize(Roles = "User")]
         [HttpPost("[action]")]

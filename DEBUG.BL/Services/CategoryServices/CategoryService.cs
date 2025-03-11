@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.CategoryDTOs;
+using DEBUG.BL.Exceptions;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
 using DEBUG.Core.RepositoryInstances;
@@ -16,8 +17,12 @@ public class CategoryService(ICategoryRepository _repository, IMapper _mapper) :
         return category.Id;
     }
 
-    public async Task<IEnumerable<CategoryGetDTO>> GetAllAsync()
-        => _mapper.Map<IEnumerable<CategoryGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false));
+    public async Task<IEnumerable<CategoryGetDTO>> GetAllAsync(short pageNo, short take)
+    {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<CategoryGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false));
+    }
 
 
     public async Task<CategoryGetDTO> GetByIdAsync(int id)

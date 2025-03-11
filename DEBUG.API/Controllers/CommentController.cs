@@ -15,13 +15,13 @@ namespace DEBUG.API.Controllers;
 public class CommentController(IAnswerService _answerService, ICommentService _commentService, UserManager<User> _userManager) : ControllerBase
 {
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetAllByAnswerId(int answerId)
+    public async Task<IActionResult> GetAllByAnswerId(int answerId, short pageNo, short take)
     {
         if (await _answerService.GetByIdAsync(answerId) == null) throw new NotFoundException<Answer>();
-        return Ok(await _commentService.GetAllByAnswerIdAsync(answerId));
+        return Ok(await _commentService.GetAllByAnswerIdAsync(answerId, pageNo, take));
     }
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetByUserIdAsync(string id)
+    public async Task<IActionResult> GetByUserIdAsync(string id, int pageNo, int take)
     {
         return Ok(await _commentService.GetByUserIdAsync(id));
     }

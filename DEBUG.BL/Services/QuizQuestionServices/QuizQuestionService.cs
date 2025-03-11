@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.QuizQuestionDTOs;
+using DEBUG.BL.Exceptions;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
 using DEBUG.Core.Enums;
@@ -49,14 +50,18 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
         }
         await _repository.SaveChangesAsync();
     }
-    public async Task<IEnumerable<QuizQuestionGetDTO>> Get5RandomQuestionsAsync(int difficulty)
+    public async Task<IEnumerable<QuizQuestionGetDTO>> GetRandomQuestionsAsync(byte difficulty, short take)
     {
-        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(x => x.Difficulty == difficulty, ["Tag", "QuizAnswers"]);
-        return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(questions.OrderBy(x => Guid.NewGuid()).Take(5));
+        if (take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(0, 0, x => x.Difficulty == difficulty, ["Tag", "QuizAnswers"]);
+        return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(questions.OrderBy(x => Guid.NewGuid()).Take(take));
     }
-    public async Task<IEnumerable<QuizQuestionGetDTO>> GetAllAsync()
+    public async Task<IEnumerable<QuizQuestionGetDTO>> GetAllAsync(short pageNo, short take)
     {
-        return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, ["QuizAnswers", "Tag"]));
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false, ["QuizAnswers", "Tag"]));
     }
 
     public async Task<QuizQuestionGetDTO> GetByIdAsync(int id)

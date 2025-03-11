@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.AdditionalDTOs;
 using DEBUG.BL.DTOs.CommentDTOs;
+using DEBUG.BL.Exceptions;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.AdditionalServices;
 using DEBUG.Core.Entities;
@@ -31,10 +32,18 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
         await _repository.SaveChangesAsync();
         return Comment.Id;
     }
-    public async Task<IEnumerable<CommentGetDTO>> GetAllByAnswerIdAsync(int answerId)
-        => _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.AnswerId == answerId, "User"));
-    public async Task<IEnumerable<CommentGetDTO>> GetAllAsync()
-        => _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, "User"));
+    public async Task<IEnumerable<CommentGetDTO>> GetAllByAnswerIdAsync(int answerId, short pageNo, short take)
+    {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false && x.AnswerId == answerId, "User"));
+    }
+    public async Task<IEnumerable<CommentGetDTO>> GetAllAsync(short pageNo, short take)
+    {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false, "User"));
+    }
     public async Task<CommentGetDTO> GetByIdAsync(int id)
     {
         Comment? comment = await _repository.GetByIdAsync(id, x => x.IsDeleted == false, "User");
@@ -44,7 +53,7 @@ public class CommentService(ICommentRepository _repository, UserManager<User> _u
     public async Task<IEnumerable<CommentGetDTO>> GetByUserIdAsync(string id)
     {
         if (await _userManager.FindByIdAsync(id) == null) throw new NotFoundException<User>();
-        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(x => x.UserId == id, "User"));
+        return _mapper.Map<IEnumerable<CommentGetDTO>>(await _repository.GetWhereAsync(0, 0, x => x.UserId == id, "User"));
     }
     public async Task HardDeleteAsync(int id)
     {

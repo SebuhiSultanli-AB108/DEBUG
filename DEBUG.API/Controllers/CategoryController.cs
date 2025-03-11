@@ -11,9 +11,9 @@ namespace DEBUG.API.Controllers;
 public class CategoryController(ICategoryService _service) : ControllerBase
 {
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll(short pageNo, short take)
     {
-        return Ok(await _service.GetAllAsync());
+        return Ok(await _service.GetAllAsync(pageNo, take));
     }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)

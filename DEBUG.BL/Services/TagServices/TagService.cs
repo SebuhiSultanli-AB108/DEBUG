@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.TagDTOs;
+using DEBUG.BL.Exceptions;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.Core.Entities;
 using DEBUG.Core.RepositoryInstances;
@@ -16,8 +17,12 @@ public class TagService(ITagRepository _repository, IMapper _mapper) : ITagServi
         return tag.Id;
     }
 
-    public async Task<IEnumerable<TagGetDTO>> GetAllAsync()
-        => _mapper.Map<IEnumerable<TagGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false));
+    public async Task<IEnumerable<TagGetDTO>> GetAllAsync(short pageNo, short take)
+    {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<TagGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false));
+    }
 
 
     public async Task<TagGetDTO> GetByIdAsync(int id)

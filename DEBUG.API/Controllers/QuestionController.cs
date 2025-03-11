@@ -15,19 +15,19 @@ namespace DEBUG.API.Controllers;
 public class QuestionController(IQuestionService _service, UserManager<User> _userManager, IWebHostEnvironment _wwwRoot) : ControllerBase
 {
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync(short pageNo, short take)
     {
-        return Ok(await _service.GetAllAsync());
+        return Ok(await _service.GetAllAsync(pageNo, take));
     }
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetByUserIdAsync(string id)
+    public async Task<IActionResult> GetByUserIdAsync(string id, short pageNo, short take)
     {
-        return Ok(await _service.GetByUserIdAsync(id));
+        return Ok(await _service.GetByUserIdAsync(pageNo, take, id));
     }
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetByCategoryAndTagsAsync(int categoryId, [FromQuery] int[] tagIds)
+    public async Task<IActionResult> GetByCategoryAndTagsAsync(int categoryId, [FromQuery] int[] tagIds, short pageNo, short take)
     {
-        return Ok(await _service.GetByCategoryAndTagsAsync(categoryId, tagIds));
+        return Ok(await _service.GetByCategoryAndTagsAsync(pageNo, take, categoryId, tagIds));
     }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)

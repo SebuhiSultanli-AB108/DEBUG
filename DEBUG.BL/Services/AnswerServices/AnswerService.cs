@@ -2,6 +2,7 @@
 using DEBUG.BL.DTOs.AdditionalDTOs;
 using DEBUG.BL.DTOs.AnswerDTOs;
 using DEBUG.BL.Exceptions.Common.Common;
+using DEBUG.BL.Exceptions;
 using DEBUG.BL.Services.AdditionalServices;
 using DEBUG.Core.Entities;
 using DEBUG.Core.Enums;
@@ -31,18 +32,25 @@ public class AnswerService(IAnswerRepository _repository, UserManager<User> _use
         await _repository.SaveChangesAsync();
         return Answer.Id;
     }
-    public async Task<IEnumerable<AnswerGetDTO>> GetAllByQuestionIdAsync(int questionId)
-        => _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false && x.QuestionId == questionId, "User"));
+    public async Task<IEnumerable<AnswerGetDTO>> GetAllByQuestionIdAsync(int questionId, short pageNo, short take)
+    {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false && x.QuestionId == questionId, "User"));
+
+    }
     public async Task<AnswerGetDTO> GetByIdAsync(int id)
     {
         Answer? answer = await _repository.GetByIdAsync(id, x => x.IsDeleted == false, "User");
         if (answer == null) throw new NotFoundException<Answer>();
         return _mapper.Map<AnswerGetDTO>(answer);
     }
-    public async Task<IEnumerable<AnswerGetDTO>> GetByUserIdAsync(string id)
+    public async Task<IEnumerable<AnswerGetDTO>> GetByUserIdAsync(string id, short pageNo, short take)
     {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
         if (await _userManager.FindByIdAsync(id) == null) throw new NotFoundException<User>();
-        return _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(x => x.UserId == id, "User"));
+        return _mapper.Map<IEnumerable<AnswerGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.UserId == id, "User"));
     }
     public async Task HardDeleteAsync(int id)
     {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DEBUG.BL.DTOs.AdditionalDTOs;
 using DEBUG.BL.DTOs.QuestionDTOs;
+using DEBUG.BL.Exceptions;
 using DEBUG.BL.Exceptions.Common.Common;
 using DEBUG.BL.Services.AdditionalServices;
 using DEBUG.BL.Services.TagServices;
@@ -35,8 +36,12 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         return question.Id;
     }
 
-    public async Task<IEnumerable<QuestionGetDTO>> GetAllAsync()
-        => _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.IsDeleted == false, ["User", "Category", "Tags"]));
+    public async Task<IEnumerable<QuestionGetDTO>> GetAllAsync(short pageNo, short take)
+    {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        return _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.IsDeleted == false, ["User", "Category", "Tags"]));
+    }
 
     public async Task<QuestionGetDTO> GetByIdAsync(int id)
     {
@@ -45,10 +50,12 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         return _mapper.Map<QuestionGetDTO>(question);
     }
 
-    public async Task<IEnumerable<QuestionGetDTO>> GetByUserIdAsync(string id)
+    public async Task<IEnumerable<QuestionGetDTO>> GetByUserIdAsync(short pageNo, short take, string id)
     {
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
         if (await _userManager.FindByIdAsync(id) == null) throw new NotFoundException<User>();
-        return _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.UserId == id, ["User", "Category", "Tags"]));
+        return _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.UserId == id, ["User", "Category", "Tags"]));
     }
     public async Task HardDeleteAsync(int id)
     {
@@ -80,9 +87,11 @@ public class QuestionService(IQuestionRepository _repository, ITagService _tagSe
         return _mapper.Map<QuestionGetDTO>(question);
     }
 
-    public async Task<IEnumerable<QuestionGetDTO>> GetByCategoryAndTagsAsync(int categoryId, int[] tagIds)
+    public async Task<IEnumerable<QuestionGetDTO>> GetByCategoryAndTagsAsync(short pageNo, short take, int categoryId, int[] tagIds)
     {
-        var table = _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(x => x.CategoryId == categoryId, ["User", "Category", "Tags"]));
+        if (pageNo <= 0 || take <= 0)
+            throw new PageOrTakeCantBeZeroException();
+        var table = _mapper.Map<IEnumerable<QuestionGetDTO>>(await _repository.GetWhereAsync(pageNo, take, x => x.CategoryId == categoryId, ["User", "Category", "Tags"]));
         if (tagIds.IsNullOrEmpty()) return table;
         return table.Where(x => x.Tags.Any(t => tagIds.Contains(t.Id)));
     }

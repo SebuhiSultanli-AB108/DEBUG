@@ -20,15 +20,15 @@ public class AnswerController(
     IWebHostEnvironment _wwwRoot) : ControllerBase
 {
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetAllByQuestionId(int questionId)
+    public async Task<IActionResult> GetAllByQuestionId(int questionId, short pageNo, short take)
     {
         if (await _questionService.GetByIdAsync(questionId) == null) throw new NotFoundException<Question>();
-        return Ok(await _answerService.GetAllByQuestionIdAsync(questionId));
+        return Ok(await _answerService.GetAllByQuestionIdAsync(questionId, pageNo, take));
     }
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetByUserIdAsync(string id)
+    public async Task<IActionResult> GetByUserIdAsync(string id, short pageNo, short take)
     {
-        return Ok(await _answerService.GetByUserIdAsync(id));
+        return Ok(await _answerService.GetByUserIdAsync(id, pageNo, take));
     }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetById(int id)
