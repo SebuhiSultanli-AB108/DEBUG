@@ -18,10 +18,18 @@ public class UserController(IUserService _service, UserManager<User> _userManage
     {
         return Ok(await _service.GetUserById(id));
     }
+    [Authorize(Roles = "Admin")]
     [HttpGet("[action]")]
     public async Task<IActionResult> GetAll()
     {
         return Ok(await _service.GetAllAsync());
+    }
+    [Authorize(Roles = "Admin")]
+    [HttpPut("[action]")]
+    public async Task<IActionResult> MakeModerator(string id)
+    {
+        await _service.MakeModeratorAsync(id);
+        return Ok();
     }
     [Authorize(Roles = "User")]
     [HttpPost("[action]")]

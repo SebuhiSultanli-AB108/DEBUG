@@ -12,6 +12,7 @@ public interface IUserService
     Task BanAsync(string id, int banDurationWithMinutes);
     Task<IEnumerable<User>> GetAllAsync();
     string GetBadges(User user);
+    Task MakeModeratorAsync(string id);
     Task<string> RegisterAsync(RegisterDTO dto);
     Task<string> LoginAsync(LoginDTO dto);
     Task LogoutAsync();

@@ -20,9 +20,9 @@ namespace DEBUG.API.Controllers
         }
         [Authorize(Roles = "User")]
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetLevelAsync(byte difficulty, short take)
+        public async Task<IActionResult> GetLevelAsync(byte difficulty, int tagId, short take)
         {
-            return Ok(await _service.GetRandomQuestionsAsync(difficulty, take));
+            return Ok(await _service.GetRandomQuestionsAsync(difficulty, tagId, take));
         }
         [Authorize(Roles = "User")]
         [HttpPost("[action]")]

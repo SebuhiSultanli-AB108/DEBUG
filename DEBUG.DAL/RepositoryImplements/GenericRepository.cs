@@ -32,7 +32,9 @@ public class GenericRepository<T>(AppDbContext _context) : IGenericRepository<T>
     }
     public async Task<IEnumerable<T>> GetWhereAsync(short pageNo, short take, Expression<Func<T, bool>> expression, params string[]? includes)
     {
-        var query = Table.AsQueryable().Skip((pageNo - 1) * take).Take(take);
+        var query = Table.AsQueryable();
+        if (take > 0)
+            query = query.Skip((pageNo - 1) * take).Take(take);
         query = _addIncludes(query, includes);
         query = _addWhere(query, expression);
         return await query.ToListAsync();

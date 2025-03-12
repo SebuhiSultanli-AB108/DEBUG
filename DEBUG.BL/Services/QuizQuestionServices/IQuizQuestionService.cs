@@ -12,6 +12,6 @@ public interface IQuizQuestionService
     Task HardDeleteAsync(int id);
     Task SoftDeleteOrRestoreAsync(int id);
     Task<IEnumerable<QuizQuestionGetDTO>> GetAllAsync(short pageNo, short take);
-    Task<IEnumerable<QuizQuestionGetDTO>> GetRandomQuestionsAsync(byte difficulty, short take);
+    Task<IEnumerable<QuizQuestionGetDTO>> GetRandomQuestionsAsync(byte difficulty, int tagId, short take);
     Task<QuizQuestionGetDTO> GetByIdAsync(int id);
 }

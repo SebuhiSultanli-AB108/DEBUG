@@ -50,11 +50,11 @@ public class QuizQuestionService(IQuizQuestionRepository _repository, IMapper _m
         }
         await _repository.SaveChangesAsync();
     }
-    public async Task<IEnumerable<QuizQuestionGetDTO>> GetRandomQuestionsAsync(byte difficulty, short take)
+    public async Task<IEnumerable<QuizQuestionGetDTO>> GetRandomQuestionsAsync(byte difficulty, int tagId, short take)
     {
         if (take <= 0)
             throw new PageOrTakeCantBeZeroException();
-        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(0, 0, x => x.Difficulty == difficulty, ["Tag", "QuizAnswers"]);
+        IEnumerable<QuizQuestion> questions = await _repository.GetWhereAsync(0, 0, x => x.Difficulty == difficulty && x.TagId == tagId, ["Tag", "QuizAnswers"]);
         return _mapper.Map<IEnumerable<QuizQuestionGetDTO>>(questions.OrderBy(x => Guid.NewGuid()).Take(take));
     }
     public async Task<IEnumerable<QuizQuestionGetDTO>> GetAllAsync(short pageNo, short take)

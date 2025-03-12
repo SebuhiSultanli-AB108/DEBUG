@@ -62,11 +62,12 @@ public class UserService(
         if (!dto.HasAcceptedTerms)
             throw new TermsAndPrivacyPolicyException();
         User newUser = _mapper.Map<User>(dto);
-        newUser.Role = Roles.User.ToString();
+        newUser.Role = nameof(Roles.User);
         await _userManager.CreateAsync(newUser, dto.Password);
         User? user = await _userManager.FindByEmailAsync(dto.Email);
         if (user == null) throw new NotFoundException<User>();
         SendEmail(await _userManager.GenerateEmailConfirmationTokenAsync(user), user.Email!, user.UserName!);
+        await _userManager.AddToRoleAsync(user, nameof(Roles.User));
         return user.Id;
     }
     public async Task<IEnumerable<User>> GetAllAsync()
@@ -101,6 +102,14 @@ public class UserService(
         User? user = await _userManager.FindByIdAsync(id);
         if (user is null) throw new NotFoundException<User>();
         await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now.AddMinutes(banDurationWithMinutes));
+    }
+    public async Task MakeModeratorAsync(string id)
+    {
+        User? user = await _userManager.FindByIdAsync(id);
+        if (user is null) throw new NotFoundException<User>();
+        user.Role = nameof(Roles.Moderator);
+        await _userManager.AddToRoleAsync(user, nameof(Roles.Moderator));
+        await _dbContext.SaveChangesAsync();
     }
     public async Task UnBanAsync(string id)
     {
